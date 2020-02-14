@@ -5,4 +5,5 @@ public interface Character {
 	void setHealth();
 	void remove();
 	void spawn();
+	int weaponIndex();
 }
