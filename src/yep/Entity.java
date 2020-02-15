@@ -1,8 +1,6 @@
 package yep;
 //Imports Necessary Libraries
-
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public interface Entity {
     //Requires all entities to have an event that runs every frame
@@ -14,4 +12,6 @@ public interface Entity {
     //Requires all entities to have a hit box
     Rectangle getBounds();
 
+    //Requires all entities to be able to be in a room
+    void setRoom(Room room);
 }
