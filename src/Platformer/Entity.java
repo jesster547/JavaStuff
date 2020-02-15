@@ -1,4 +1,4 @@
-package yep;
+package Platformer;
 //Imports Necessary Libraries
 import java.awt.*;
 

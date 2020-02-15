@@ -1,4 +1,4 @@
-package yep;
+package Platformer;
 
 import java.awt.*;
 
