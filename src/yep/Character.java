@@ -7,6 +7,7 @@ public interface Character {
 	int getMana();
 	void setMana(int cost);
 	void remove();
+	void test();
 	void spawn();
 	void step();
 
