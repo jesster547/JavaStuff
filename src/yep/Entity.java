@@ -14,5 +14,4 @@ public interface Entity {
     //Requires all entities to have a hit box
     Rectangle getBounds();
 
-    //Derek should delete this
 }
