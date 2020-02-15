@@ -6,6 +6,7 @@ public class Platform implements Entity {
     //Initializes instance variables
     private int x, y, w, h;
     Room room;
+    int[] imgIndex;
 
     //Sets Instance Variables
     public Platform(int x, int y, int w, int h) {
@@ -35,4 +36,30 @@ public class Platform implements Entity {
     public void setRoom(Room room) {
         this.room = room;
     }
+
+    //Provides X Position
+    public int getX() {
+        return x;
+    }
+
+    //Provides Y Position
+    public int getY() {
+        return y;
+    }
+
+    //Provides file name for images used
+    public String[] getImgSources() {
+        return new String[]{"src/Platformer/Images/IMG_7648.PNG"};
+    }
+
+    //Sets the indexes for the scaled images
+    public void setImgIndex(int[] i) {
+        imgIndex = i;
+    }
+
+    //Uses index given by room to choose the image to be displayed
+    public int getImgIndex() {
+        return (imgIndex[0]);
+    }
+
 }

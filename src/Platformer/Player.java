@@ -157,4 +157,16 @@ public abstract class Player implements Entity {
             return (num / Math.abs(num));
         return (0);
     }
+
+    //Returns X position
+    public int getX() {
+        return x;
+    }
+
+    //Returns Y Position
+    public int getY() {
+        return y;
+    }
+
+
 }
