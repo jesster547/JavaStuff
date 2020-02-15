@@ -1,5 +1,6 @@
 package yep;
- //Imports Necessary Libraries
+//Imports Necessary Libraries
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -12,9 +13,4 @@ public interface Entity {
 
     //Requires all entities to have a hit box
     Rectangle getBounds();
-
-    //Allows all entities to be able to detect inputs
-    void keyPressed(KeyEvent k);
-
-    void keyReleased(KeyEvent k);
 }
