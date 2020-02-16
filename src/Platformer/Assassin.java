@@ -2,32 +2,32 @@ package Platformer;
 
 
 public class Assassin extends Player {
-	private int jumpHeight, totalHealth, totalMana, healthPoints, manaPoints;
+	private int  totalHealth, totalMana, healthPoints, manaPoints, weaponIndex;
 
 	public Assassin(int x, int y, int w, int h, int i) {
 		super(x, y, w, h, i);
-		jumpHeight = 0;
+		this.weaponIndex = i;
 		totalHealth = 0;
 		totalMana = 0;
 		healthPoints = 0;
 		manaPoints = 0;
-		setStats(10, 10, 10, 10);
+		setStats(10, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
 	}
 
 	int getHealth() {
-		return 0;
+		return this.healthPoints;
 	}
 
 	void setHealth(int damage) {
-
+		this.healthPoints -= damage;	//subtracts damage make damage negative for heals
 	}
 
 	int getMana() {
-		return 0;
+		return this.manaPoints;
 	}
 
 	void setMana(int cost) {
-
+		this.manaPoints-= cost;			//subtracts mana used, make negative for regened mana
 	}
 
 	void remove() {
@@ -65,8 +65,8 @@ public class Assassin extends Player {
 		this.jumpHeight = theJumpHeight;
 	}
 
-	int setWeaponIndex() {
-		return 0;
+	int getWeaponIndex() {
+		return this.weaponIndex;
 	}
 
 
