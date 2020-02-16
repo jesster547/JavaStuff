@@ -8,7 +8,7 @@ public class Runner {
         JFrame frame = new JFrame("Platformer");
         ArrayList<Entity> entities = new ArrayList<>();
         entities.add(new Platform(300, 300, 150, 200));
-        entities.add(new Assassin(200, 200, 150, 200));
+        entities.add(new Assassin(200, 200, 150, 200,1));
         Room testingRoom = new Room(entities, 4021, 766);
         frame.add(testingRoom);
         frame.setSize(1600, 900);
