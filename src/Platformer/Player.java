@@ -22,7 +22,7 @@ public abstract class Player implements Entity {
 
     //Sets Variables
     public Player(int x, int y, int w, int h) {
-        walkSpeed = 13;
+        //walkSpeed = 13;
         hSpd = 0;
         vSpd = 0;
         grv = 1.5;
