@@ -14,28 +14,6 @@ public class Assassin extends Player {
 		setStats(10, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
 	}
 
-	int getHealth() {
-		return this.healthPoints;
-	}
-
-	void setHealth(int damage) {
-		this.healthPoints -= damage;	//subtracts damage make damage negative for heals
-		if(this.healthPoints > this.maxHealth) {
-			this.healthPoints = this.maxHealth;
-		}
-	}
-
-	int getMana() {
-		return this.manaPoints;
-	}
-
-	void setMana(int cost) {
-		this.manaPoints-= cost;			//subtracts mana used, make negative for regened mana
-		if(this.manaPoints > this.maxMana) {
-			this.manaPoints = this.maxMana;
-		}
-	}
-
 	void remove() {
 
 	}

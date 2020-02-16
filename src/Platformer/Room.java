@@ -81,8 +81,14 @@ public class Room extends JPanel {
 
     //Steps all entities in room
     public void step() {
-        for (Entity i : entityList) {
-            i.step();
+        for (int i = 0; i < entityList.size(); i++) {
+            entityList.get(i).step();                                   //Steps Every entity in room
+            if (entityList.get(i) instanceof Player) {                    //Checks if entity is a player
+                if (((Player) entityList.get(i)).getHealth() <= 0) {     //If player health is < 0, player object is
+                    entityList.remove(i);                               //deleted
+                    i--;
+                }
+            }
         }
     }
 

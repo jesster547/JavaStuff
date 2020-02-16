@@ -14,7 +14,7 @@ public abstract class Player implements Entity {
      * upState, rightState, & leftState - Detects of keys that are being pressed
      * room - The room the player is in
      * imgIndex - The indexes the room uses to display images */
-    protected int x, y, w, h, walkSpeed, weapIndex,healthPoints,manaPoints;
+    protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana;
     protected double grv, vSpd, hSpd, jumpHeight;
     private boolean upState = false, rightState = false, leftState = false;
     private Room room;
@@ -27,7 +27,9 @@ public abstract class Player implements Entity {
         manaPoints = 100;
         hSpd = 0;
         vSpd = 0;
-        jumpHeight =0 ;
+        jumpHeight = 0;
+        maxHealth = 100;
+        maxMana = 100;
         grv = 1.5;
         this.x = x;
         this.y = y;
@@ -40,14 +42,6 @@ public abstract class Player implements Entity {
         this.room = room;
     }
 
-    abstract int getHealth();
-
-    abstract void setHealth(int damage);
-
-    abstract int getMana();
-
-    abstract void setMana(int cost);
-
     abstract void remove();
 
     abstract void spawn();
@@ -58,6 +52,28 @@ public abstract class Player implements Entity {
 
     public void setWeapIndex(int weap) {
         weapIndex = weap;
+    }
+
+    int getHealth() {
+        return this.healthPoints;
+    }
+
+    void setHealth(int damage) {
+        this.healthPoints -= damage;    //subtracts damage make damage negative for heals
+        if (this.healthPoints > this.maxHealth) {
+            this.healthPoints = this.maxHealth;
+        }
+    }
+
+    int getMana() {
+        return this.manaPoints;
+    }
+
+    void setMana(int cost) {
+        this.manaPoints -= cost;            //subtracts mana used, make negative for regened mana
+        if (this.manaPoints > this.maxMana) {
+            this.manaPoints = this.maxMana;
+        }
     }
 
     //Handles Collision and Movement of Player
