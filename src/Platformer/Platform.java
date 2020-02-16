@@ -47,7 +47,7 @@ public class Platform implements Entity {
         return y;
     }
 
-    //Provides file name for images used
+    //Provides file name for images used (Provide empty string if no image is added)
     public String[] getImgSources() {
         return new String[]{"src/Platformer/Images/stockImage.png"};
     }
