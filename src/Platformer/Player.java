@@ -16,7 +16,7 @@ public abstract class Player implements Entity {
      * imgIndex - The indexes the room uses to display images */
     protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana;
     protected double grv, vSpd, hSpd, jumpHeight;
-    private boolean upState = false, rightState = false, leftState = false;
+    private boolean upState = false, rightState = false, leftState = false, facingRight = true;
     private Room room;
     int[] imgIndex;
 
@@ -58,6 +58,10 @@ public abstract class Player implements Entity {
         return this.healthPoints;
     }
 
+    public boolean facingRight() {
+        return facingRight;
+    }
+
     void setHealth(int damage) {
         this.healthPoints -= damage;    //subtracts damage make damage negative for heals
         if (this.healthPoints > this.maxHealth) {
@@ -78,17 +82,20 @@ public abstract class Player implements Entity {
 
     //Handles Collision and Movement of Player
     public void step() {
-        int rightInt;    //Used to determine Direction player is moving
-        int leftInt;    //Used to determine Direction player is moving
+        int rightInt = 0;    //Used to determine Direction player is moving
+        int leftInt = 0;     //Used to determine Direction player is moving
         if (rightState)
             rightInt = 1;
-        else
-            rightInt = 0;
         if (leftState)
             leftInt = 1;
-        else
-            leftInt = 0;
         int move = rightInt - leftInt; //-1 = left, 0 = still, 1 = right
+
+        if (move == -1) {
+            facingRight = false;
+        }
+        if (move == 1) {
+            facingRight = true;
+        }
 
         hSpd = move * walkSpeed; //Determines direction and speed of movement
         vSpd += grv;             //Changes vSpd for gravity
@@ -98,7 +105,7 @@ public abstract class Player implements Entity {
             if (i instanceof Platform) {
                 //Checks if Platform is directly below. If so, player can jump.
                 if ((i.getBounds().intersects(new Rectangle(x, y + 1, w, h))) && upState) {
-                    vSpd = jumpHeight*-1; //Sends player upward (Jump)
+                    vSpd = jumpHeight * -1; //Sends player upward (Jump)
                 }
                 /* Checks if player will collide with a platform in the next step. If so, it
                  * will move the player as close to the platform as possible without intersecting it.
@@ -153,7 +160,6 @@ public abstract class Player implements Entity {
     public Rectangle getBounds() {
         return new Rectangle(x, y, w, h);
     }
-
 
     //Checks if keys are down.
     public void keyPressed(KeyEvent k) {

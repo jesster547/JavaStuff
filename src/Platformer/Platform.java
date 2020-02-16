@@ -47,6 +47,11 @@ public class Platform implements Entity {
         return y;
     }
 
+    //Will always face right (No need to flip image)
+    public boolean facingRight() {
+        return true;
+    }
+
     //Provides file name for images used (Provide empty string if no image is added)
     public String[] getImgSources() {
         return new String[]{"src/Platformer/Images/stockImage.png"};

@@ -82,10 +82,10 @@ public class Room extends JPanel {
     //Steps all entities in room
     public void step() {
         for (int i = 0; i < entityList.size(); i++) {
-            entityList.get(i).step();                                   //Steps Every entity in room
-            if (entityList.get(i) instanceof Player) {                    //Checks if entity is a player
+            entityList.get(i).step();                                    //Steps Every entity in room
+            if (entityList.get(i) instanceof Player) {                   //Checks if entity is a player
                 if (((Player) entityList.get(i)).getHealth() <= 0) {     //If player health is < 0, player object is
-                    entityList.remove(i);                               //deleted
+                    entityList.remove(i);                                //deleted
                     i--;
                 }
             }
@@ -100,7 +100,11 @@ public class Room extends JPanel {
         //Displays entities and images
         for (Entity i : entityList) {
             i.paint(g2d);
-            g.drawImage(imgList.get(i.getImgIndex()), i.getX() - camX, i.getY(), null);
+            if (i.facingRight()) {
+                g.drawImage(imgList.get(i.getImgIndex()), i.getX() - camX, i.getY(), (int) i.getBounds().getWidth(), (int) i.getBounds().getHeight(), null);
+            } else {
+                g.drawImage(imgList.get(i.getImgIndex()), (int) (i.getX() - camX + i.getBounds().getWidth()), i.getY(), -(int) i.getBounds().getWidth(), (int) i.getBounds().getHeight(), null);
+            }
 
         }
     }

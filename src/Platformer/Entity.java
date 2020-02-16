@@ -6,6 +6,9 @@ public interface Entity {
     //Requires all entities to have an event that runs every frame
     void step();
 
+    //Requires all entities to specify if they are facing Right
+    boolean facingRight();
+
     //Requires all entities to be able to be displayed on screen
     void paint(Graphics2D g);
 
