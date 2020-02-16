@@ -101,6 +101,7 @@ public class Room extends JPanel {
         //Displays entities and images
         for (Entity i : entityList) {
             i.paint(g2d);
+            //Checks if entity wants to be flipped, if so it is flipped
             if (i.facingRight()) {
                 g.drawImage(imgList.get(i.getImgIndex()), i.getX() - camX, i.getY(), (int) i.getBounds().getWidth(), (int) i.getBounds().getHeight(), null);
             } else {

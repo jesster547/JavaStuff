@@ -13,10 +13,11 @@ public abstract class Player implements Entity {
      * vSpd & hSpd - Speed player is travelling (Vertical and Horizontal)
      * upState, rightState, & leftState - Detects of keys that are being pressed
      * room - The room the player is in
-     * imgIndex - The indexes the room uses to display images */
+     * imgIndex - The indexes the room uses to display images
+     * canJump - True if player can jump. If player is in the air, it is false */
     protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana;
     protected double grv, vSpd, hSpd, jumpHeight;
-    protected boolean upState = false, rightState = false, leftState = false, facingRight = true;
+    protected boolean upState = false, rightState = false, leftState = false, facingRight = true, canJump = false;
     protected Room room;
     protected int[] imgIndex;
 
@@ -82,6 +83,7 @@ public abstract class Player implements Entity {
 
     //Handles Collision and Movement of Player
     public void step() {
+        canJump = false;     //Used to determine if player can jump or is in the air
         int rightInt = 0;    //Used to determine Direction player is moving
         int leftInt = 0;     //Used to determine Direction player is moving
         if (rightState)
@@ -103,8 +105,11 @@ public abstract class Player implements Entity {
         //Checks all entities for Platforms
         for (Entity i : room.entityList) {
             if (i instanceof Platform) {
-                //Checks if Platform is directly below. If so, player can jump.
-                if ((i.getBounds().intersects(new Rectangle(x, y + 1, w, h))) && upState) {
+                //Checks if Platform is directly below. If so, player can jump. Stays true once it becomes true
+                if (!canJump) {
+                    canJump = i.getBounds().intersects(new Rectangle(x, y + 1, w, h));
+                }
+                if (canJump && upState) {
                     vSpd = jumpHeight * -1; //Sends player upward (Jump)
                 }
                 /* Checks if player will collide with a platform in the next step. If so, it
@@ -152,7 +157,9 @@ public abstract class Player implements Entity {
 
     //Displays player (Placeholder until we add a real sprite)
     public void paint(Graphics2D g) {
-        g.setColor(new Color(74, 204, 111));
+        g.setColor(new Color(74, 204, 111, 100));
+        if (canJump)
+            g.setColor(new Color(74, 204, 111));
         g.fillRect(x - room.getCamX(), y, w, h);
     }
 
@@ -217,5 +224,10 @@ public abstract class Player implements Entity {
     //Contains logic for which image is to be displayed at a point in time
     public int getImgIndex() {
         return (imgIndex[0]);
+    }
+
+    //Returns whether or not a player can jump
+    public boolean canJump() {
+        return canJump;
     }
 }

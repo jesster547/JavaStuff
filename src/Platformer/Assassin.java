@@ -23,6 +23,7 @@ public class Assassin extends Player {
 	}
 
 	public String[] getImgSources() {
+		//List of all assassin image sources. Index in this list correlates to imgIndex.
 		return new String[]{"src/Platformer/Images/Assassin/assassinNeutral.PNG",
 				"src/Platformer/Images/Assassin/assassinUp.PNG", "src/Platformer/Images/Assassin/assassinDown.png",
 				"src/Platformer/Images/Assassin/assassinRunning1.PNG", "src/Platformer/Images/Assassin/assassinRunning2.PNG",
@@ -36,16 +37,19 @@ public class Assassin extends Player {
 	}
 
 	public int getImgIndex() {
+		//Checks if player is in the air
 		if (vSpd > 0) {
 			return (imgIndex[2]);
 		}
 		if (vSpd < 0) {
 			return (imgIndex[1]);
 		}
-
+		//Checks if player staying still
 		if (hSpd == 0 || mvTimer == 0) {
 			return imgIndex[0];
-		} else {
+		}
+		//Player is on ground moving. Animation of 8 frames running at 12 frames per second
+		else {
 			int mvMod = mvTimer % 40;
 			if (mvMod == 0)
 				return imgIndex[10];
@@ -68,11 +72,11 @@ public class Assassin extends Player {
 	}
 
 	public void step() {
-		super.step();
-		if (hSpd != 0 && vSpd == 0)
-			mvTimer++;
+		super.step();                //Calls Player.step()
+		if (hSpd != 0 && canJump)    //Checks if player is on the ground running
+			mvTimer++;                //Iterates through running frames
 		else
-			mvTimer = 0;
+			mvTimer = 0;            //Resets animation once player stops
 	}
 
 	public void setStats(int totHealth, int totMana, int theWalkSpeed, int theJumpHeight) {
