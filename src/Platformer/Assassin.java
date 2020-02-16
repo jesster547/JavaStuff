@@ -2,16 +2,16 @@ package Platformer;
 
 
 public class Assassin extends Player {
+	private int jumpHeight, totalHealth, totalMana, healthPoints, manaPoints;
 
-	public Assassin(int x, int y, int w, int h,int i) {
-		super(x, y, w, h);
-		int walkSpeed = 0;
-		int jumpHeight = 0;
-		int totalHealth = 0;
-		int totalMana = 0;
-		int healthPoints = 0;
-		int manaPoints = 0;
-		setStats(10,10,10,10)
+	public Assassin(int x, int y, int w, int h, int i) {
+		super(x, y, w, h, i);
+		jumpHeight = 0;
+		totalHealth = 0;
+		totalMana = 0;
+		healthPoints = 0;
+		manaPoints = 0;
+		setStats(10, 10, 10, 10)
 	}
 
 	int getHealth() {
