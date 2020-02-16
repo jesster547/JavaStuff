@@ -11,7 +11,7 @@ public class Assassin extends Player {
 		totalMana = 0;
 		healthPoints = 0;
 		manaPoints = 0;
-		setStats(10, 10, 10, 10)
+		setStats(10, 10, 10, 10);
 	}
 
 	int getHealth() {
