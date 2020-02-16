@@ -16,9 +16,9 @@ public abstract class Player implements Entity {
      * imgIndex - The indexes the room uses to display images */
     protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana;
     protected double grv, vSpd, hSpd, jumpHeight;
-    private boolean upState = false, rightState = false, leftState = false, facingRight = true;
-    private Room room;
-    int[] imgIndex;
+    protected boolean upState = false, rightState = false, leftState = false, facingRight = true;
+    protected Room room;
+    protected int[] imgIndex;
 
     //Sets Variables
     public Player(int x, int y, int w, int h, int i) {

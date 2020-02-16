@@ -23,7 +23,7 @@ public class Platform implements Entity {
     //Displays Platform on screen
     public void paint(Graphics2D g) {
         //g.setColor(new Color(170, 0, 255));
-        g.setColor(new Color(170, 0, 255));
+        g.setColor(new Color(74, 131, 36));
         g.fillRect(x - room.getCamX(), y, w, h);
     }
 
@@ -54,7 +54,7 @@ public class Platform implements Entity {
 
     //Provides file name for images used (Provide empty string if no image is added)
     public String[] getImgSources() {
-        return new String[]{"src/Platformer/Images/stockImage.png"};
+        return new String[]{"src/Platformer/Images/notARealStockImage.png"};
     }
 
     //Sets the indexes for the scaled images

@@ -15,6 +15,7 @@ public class Room extends JPanel {
     private ArrayList<Image> imgList;   //List of all entity images
 
     public Room(ArrayList<Entity> entities, int width, int floorY) {
+        this.setBackground(Color.BLUE);
         entityList = entities;
         this.width = width;
         this.floorY = floorY;
