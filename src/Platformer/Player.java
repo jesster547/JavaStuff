@@ -14,14 +14,14 @@ public abstract class Player implements Entity {
      * upState, rightState, & leftState - Detects of keys that are being pressed
      * room - The room the player is in
      * imgIndex - The indexes the room uses to display images */
-    protected int x, y, w, h, walkSpeed, weapIndex = 0;
+    protected int x, y, w, h, walkSpeed, weapIndex;
     protected double grv, vSpd, hSpd;
     private boolean upState = false, rightState = false, leftState = false;
     private Room room;
     int[] imgIndex;
 
     //Sets Variables
-    public Player(int x, int y, int w, int h) {
+    public Player(int x, int y, int w, int h, int i) {
         //walkSpeed = 13;
         hSpd = 0;
         vSpd = 0;
@@ -30,6 +30,7 @@ public abstract class Player implements Entity {
         this.y = y;
         this.w = w;
         this.h = h;
+        this.weapIndex = i;
     }
 
     public void setRoom(Room room) {
@@ -45,8 +46,16 @@ public abstract class Player implements Entity {
     abstract void setMana(int cost);
 
     abstract void remove();
-    
+
     abstract void spawn();
+
+    public int getWeapIndex() {
+        return weapIndex;
+    }
+
+    public void setWeapIndex(int weap) {
+        weapIndex = weap;
+    }
 
     //Handles Collision and Movement of Player
     public void step() {

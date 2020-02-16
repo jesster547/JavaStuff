@@ -64,4 +64,5 @@ public class Assassin extends Player {
 		return 0;
 	}
 
+
 }
