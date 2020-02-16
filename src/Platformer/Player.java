@@ -14,8 +14,8 @@ public abstract class Player implements Entity {
      * upState, rightState, & leftState - Detects of keys that are being pressed
      * room - The room the player is in
      * imgIndex - The indexes the room uses to display images */
-    protected int x, y, w, h, walkSpeed, weapIndex;
-    protected double grv, vSpd, hSpd;
+    protected int x, y, w, h, walkSpeed, weapIndex,healthPoints,manaPoints;
+    protected double grv, vSpd, hSpd, jumpHeight;
     private boolean upState = false, rightState = false, leftState = false;
     private Room room;
     int[] imgIndex;
@@ -23,8 +23,11 @@ public abstract class Player implements Entity {
     //Sets Variables
     public Player(int x, int y, int w, int h, int i) {
         walkSpeed = 13;
+        healthPoints = 100;
+        manaPoints = 100;
         hSpd = 0;
         vSpd = 0;
+        jumpHeight =0 ;
         grv = 1.5;
         this.x = x;
         this.y = y;
@@ -79,7 +82,7 @@ public abstract class Player implements Entity {
             if (i instanceof Platform) {
                 //Checks if Platform is directly below. If so, player can jump.
                 if ((i.getBounds().intersects(new Rectangle(x, y + 1, w, h))) && upState) {
-                    vSpd = -27; //Sends player upward (Jump)
+                    vSpd = jumpHeight*-1; //Sends player upward (Jump)
                 }
                 /* Checks if player will collide with a platform in the next step. If so, it
                  * will move the player as close to the platform as possible without intersecting it.

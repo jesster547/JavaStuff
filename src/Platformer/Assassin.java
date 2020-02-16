@@ -2,13 +2,13 @@ package Platformer;
 
 
 public class Assassin extends Player {
-	private int  totalHealth, totalMana, healthPoints, manaPoints, weaponIndex;
+	private int  maxHealth, maxMana, healthPoints, manaPoints, weaponIndex;
 
 	public Assassin(int x, int y, int w, int h, int i) {
 		super(x, y, w, h, i);
 		this.weaponIndex = i;
-		totalHealth = 0;
-		totalMana = 0;
+		maxHealth = 0;
+		maxMana = 0;
 		healthPoints = 0;
 		manaPoints = 0;
 		setStats(10, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
@@ -20,6 +20,9 @@ public class Assassin extends Player {
 
 	void setHealth(int damage) {
 		this.healthPoints -= damage;	//subtracts damage make damage negative for heals
+		if(this.healthPoints > this.maxHealth) {
+			this.healthPoints = this.maxHealth;
+		}
 	}
 
 	int getMana() {
@@ -57,8 +60,8 @@ public class Assassin extends Player {
 	}
 
 	public void setStats(int totHealth, int totMana, int theWalkSpeed, int theJumpHeight) {
-		this.totalHealth = totHealth;
-		this.totalMana = totMana;
+		this.maxHealth = totHealth;
+		this.maxMana = totMana;
 		this.healthPoints = totHealth;
 		this.manaPoints = totMana;
 		this.walkSpeed = theWalkSpeed;
