@@ -15,7 +15,7 @@ public abstract class Player implements Entity {
      * room - The room the player is in
      * imgIndex - The indexes the room uses to display images */
     protected int x, y, w, h, walkSpeed, weapIndex = 0;
-    private double grv, vSpd, hSpd;
+    protected double grv, vSpd, hSpd;
     private boolean upState = false, rightState = false, leftState = false;
     private Room room;
     int[] imgIndex;
@@ -123,7 +123,7 @@ public abstract class Player implements Entity {
 
     //Returns the Player's hit box
     public Rectangle getBounds() {
-        return new Rectangle(x, y, h, w);
+        return new Rectangle(x, y, w, h);
     }
 
 
@@ -184,5 +184,4 @@ public abstract class Player implements Entity {
     public int getImgIndex() {
         return (imgIndex[0]);
     }
-
 }
