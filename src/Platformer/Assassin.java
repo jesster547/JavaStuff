@@ -31,6 +31,9 @@ public class Assassin extends Player {
 
 	void setMana(int cost) {
 		this.manaPoints-= cost;			//subtracts mana used, make negative for regened mana
+		if(this.manaPoints > this.maxMana) {
+			this.manaPoints = this.maxMana;
+		}
 	}
 
 	void remove() {
