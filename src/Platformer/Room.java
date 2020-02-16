@@ -5,12 +5,14 @@ import javax.swing.JPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 public class Room extends JPanel {
-    ArrayList<Entity> entityList; //List of all entities in the room
-    private int camX = 0;         //Position of Camera
-    public int width;             //Width of the room
-    public int floorY;            //Height of the floor platform
+    ArrayList<Entity> entityList;       //List of all entities in the room
+    private int camX = 0;               //Position of Camera
+    public int width;                   //Width of the room
+    public int floorY;                  //Height of the floor platform
+    private ArrayList<Image> imgList;   //List of all entity images
 
     public Room(ArrayList<Entity> entities, int width, int floorY) {
         entityList = entities;
@@ -21,9 +23,33 @@ public class Room extends JPanel {
         entityList.add(new Platform(-1, 0, 1, 900));           //Adds Left Wall
         entityList.add(new Platform(width, 0, 1, 900));           // Adds Right Wall
 
-        //Binds all entities to this room
+        //Binds all entities to this room and generates list of images
         for (Entity i : entityList) {
             i.setRoom(this);
+            //Temp Var to get image sources from entities
+            String[] tmpImgs;
+            tmpImgs = i.getImgSources();
+            //Loops through the sources given and puts them in the list
+            for (String o : tmpImgs) {
+                //Local Vars to handle images
+                ImageIcon imgtmp;
+                Image tmp;
+                //Sets the image to the given source, and scales it to the entity
+                imgtmp = new ImageIcon(o);
+                tmp = imgtmp.getImage().getScaledInstance((int) i.getBounds().getWidth(), (int) i.getBounds().getHeight(), Image.SCALE_SMOOTH);
+                imgtmp = new ImageIcon(tmp, imgtmp.getDescription());
+                tmp = imgtmp.getImage();
+                //Adds the scaled image to imgList
+                imgList.add(tmp);
+            }
+            //Sets temp variables
+            int[] indexes = new int[tmpImgs.length];
+            int total = imgList.size() - indexes.length;
+            //Gives entities indexes to display images
+            for (int p = total; p < imgList.size(); p++) {
+                indexes[p - total] = p;
+            }
+            i.setImgIndex(indexes);
         }
 
         //Adds an event listener
@@ -64,9 +90,11 @@ public class Room extends JPanel {
         super.paint(g); //Clears Screen
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); //Smoother edges
-        //Displays entities
+        //Displays entities and images
         for (Entity i : entityList) {
             i.paint(g2d);
+            g.drawImage(imgList.get(i.getImgIndex()), i.getX() - camX, i.getY(), null);
+
         }
     }
 

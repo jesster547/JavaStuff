@@ -49,7 +49,7 @@ public class Platform implements Entity {
 
     //Provides file name for images used
     public String[] getImgSources() {
-        return new String[]{"src/Platformer/Images/IMG_7648.PNG"};
+        return new String[]{"src/Platformer/Images/stockImage.png"};
     }
 
     //Sets the indexes for the scaled images

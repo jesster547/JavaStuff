@@ -12,11 +12,13 @@ public abstract class Player implements Entity {
      * grv - Gravity
      * vSpd & hSpd - Speed player is travelling (Vertical and Horizontal)
      * upState, rightState, & leftState - Detects of keys that are being pressed
-     * room - The room the player is in */
-    private int x, y, w, h, walkSpeed, weapIndex = 0;
+     * room - The room the player is in
+     * imgIndex - The indexes the room uses to display images */
+    protected int x, y, w, h, walkSpeed, weapIndex = 0;
     private double grv, vSpd, hSpd;
     private boolean upState = false, rightState = false, leftState = false;
     private Room room;
+    int[] imgIndex;
 
     //Sets Variables
     public Player(int x, int y, int w, int h) {
@@ -168,5 +170,19 @@ public abstract class Player implements Entity {
         return y;
     }
 
+    //Returns All Image Sources in Order
+    public String[] getImgSources() {
+        return new String[]{"src/Platformer/Images/stockImage.png"};
+    }
+
+    //Sets the list of indexes to display images
+    public void setImgIndex(int[] nums) {
+        imgIndex = nums;
+    }
+
+    //Contains logic for which image is to be displayed at a point in time
+    public int getImgIndex() {
+        return (imgIndex[0]);
+    }
 
 }
