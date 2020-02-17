@@ -29,7 +29,8 @@ public class Assassin extends Player {
 				"src/Platformer/Images/Assassin/assassinRunning1.PNG", "src/Platformer/Images/Assassin/assassinRunning2.PNG",
 				"src/Platformer/Images/Assassin/assassinRunning3.PNG", "src/Platformer/Images/Assassin/assassinRunning4.PNG",
 				"src/Platformer/Images/Assassin/assassinRunning5.PNG", "src/Platformer/Images/Assassin/assassinRunning6.PNG",
-				"src/Platformer/Images/Assassin/assassinRunning7.PNG", "src/Platformer/Images/Assassin/assassinRunning8.PNG"};
+				"src/Platformer/Images/Assassin/assassinRunning7.PNG", "src/Platformer/Images/Assassin/assassinRunning8.PNG",
+				"src/Platformer/Images/Assassin/assassinSkid.PNG", "src/Platformer/Images/Assassin/assassinSkidBack.PNG"};
 	}
 
 	public void setImgIndex(int[] nums) {
@@ -45,11 +46,17 @@ public class Assassin extends Player {
 			return (imgIndex[1]);
 		}
 		//Checks if player staying still
-		if (hSpd == 0 || mvTimer == 0) {
+		if (Math.abs(hSpd) < 1 || mvTimer == 0) {
 			return imgIndex[0];
 		}
 		//Player is on ground moving. Animation of 8 frames running at 12 frames per second
 		else {
+			//Skidding Animation & Skidding backwards animation
+			if (!leftState && !rightState) {
+				if ((hSpd > 0 && facingRight) || (hSpd < 0 && !facingRight))
+					return imgIndex[11];
+				return imgIndex[12];
+			}
 			int mvMod = mvTimer % 40;
 			if (mvMod == 0)
 				return imgIndex[10];

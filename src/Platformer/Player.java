@@ -16,7 +16,7 @@ public abstract class Player implements Entity {
      * imgIndex - The indexes the room uses to display images
      * canJump - True if player can jump. If player is in the air, it is false */
     protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana;
-    protected double grv, vSpd, hSpd, jumpHeight;
+    protected double grv, vSpd, hSpd, jumpHeight, hAcc;
     protected boolean upState = false, rightState = false, leftState = false, facingRight = true, canJump = false;
     protected Room room;
     protected int[] imgIndex;
@@ -32,6 +32,7 @@ public abstract class Player implements Entity {
         maxHealth = 100;
         maxMana = 100;
         grv = 1.5;
+        hAcc = 2;
         this.x = x;
         this.y = y;
         this.w = w;
@@ -83,7 +84,6 @@ public abstract class Player implements Entity {
 
     //Handles Collision and Movement of Player
     public void step() {
-        canJump = false;     //Used to determine if player can jump or is in the air
         int rightInt = 0;    //Used to determine Direction player is moving
         int leftInt = 0;     //Used to determine Direction player is moving
         if (rightState)
@@ -99,9 +99,23 @@ public abstract class Player implements Entity {
             facingRight = true;
         }
 
-        hSpd = move * walkSpeed; //Determines direction and speed of movement
+        //Implements player's acceleration on the ground. Air acceleration is 2 times ground acceleration
+        //Max speed is equal to walk speed
+        if (canJump)
+            hAcc = move * 2;
+        else
+            hAcc = move;
+        if (move == 0) {
+            hSpd = 0.9 * hSpd;
+            if (Math.abs(hSpd) < 1)
+                hSpd = 0;
+        }
+        hSpd += hAcc;
+        if (walkSpeed < Math.abs(hSpd))
+            hSpd = sign(hSpd) * walkSpeed;
         vSpd += grv;             //Changes vSpd for gravity
 
+        canJump = false;     //Used to determine if player can jump or is in the air
         //Checks all entities for Platforms
         for (Entity i : room.entityList) {
             if (i instanceof Platform) {
@@ -116,13 +130,13 @@ public abstract class Player implements Entity {
                  * will move the player as close to the platform as possible without intersecting it.
                  * Then, it sets vSpd/hSpd to 0, so it will not move in the direction. */
                 if (i.getBounds().intersects(new Rectangle(x + (int) hSpd, y, w, h))) {
-                    while (!i.getBounds().intersects(new Rectangle(x + sign((int) hSpd), y, w, h))) {
+                    while (!i.getBounds().intersects(new Rectangle(x + (int) sign(hSpd), y, w, h))) {
                         x += sign((int) hSpd);
                     }
                     hSpd = 0;
                 }
                 if (i.getBounds().intersects(new Rectangle(x, y + (int) vSpd, w, h))) {
-                    while (!i.getBounds().intersects(new Rectangle(x, y + sign((int) vSpd), w, h))) {
+                    while (!i.getBounds().intersects(new Rectangle(x, y + (int) sign(vSpd), w, h))) {
                         y += sign((int) vSpd);
                     }
                     vSpd = 0;
@@ -142,11 +156,11 @@ public abstract class Player implements Entity {
         //Manages Camera
         //Moves Camera with player if possible
         if (x - room.getCamX() > 1120 && room.getCamX() <= room.width && hSpd > 0) {
-            room.addCamX((int) hSpd);
+            room.addCamX(hSpd);
 
         }
         if (x - room.getCamX() < 400 && room.getCamX() >= 0 && hSpd < 0) {
-            room.addCamX((int) hSpd);
+            room.addCamX((hSpd));
         }
 
         //Changes player's position
@@ -195,7 +209,7 @@ public abstract class Player implements Entity {
     }
 
     //Returns 1, -1, or 0 depending on the sign of the input
-    private int sign(int num) {
+    private double sign(double num) {
         if (num != 0)
             return (num / Math.abs(num));
         return (0);

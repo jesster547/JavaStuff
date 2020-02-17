@@ -112,7 +112,7 @@ public class Room extends JPanel {
     }
 
     //Adds mv to Camera position. Camera will not extend past the room borders unless the room is smaller than camera.
-    public void addCamX(int mv) {
+    public void addCamX(double mv) {
         if (camX + mv >= 0 && camX + mv <= width - 1600) {
             camX += mv;
         } else if (camX + mv > width - 1600) {
