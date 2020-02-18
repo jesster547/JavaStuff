@@ -30,7 +30,8 @@ public class Assassin extends Player {
 				"src/Platformer/Images/Assassin/assassinRunning3.PNG", "src/Platformer/Images/Assassin/assassinRunning4.PNG",
 				"src/Platformer/Images/Assassin/assassinRunning5.PNG", "src/Platformer/Images/Assassin/assassinRunning6.PNG",
 				"src/Platformer/Images/Assassin/assassinRunning7.PNG", "src/Platformer/Images/Assassin/assassinRunning8.PNG",
-				"src/Platformer/Images/Assassin/assassinSkid.PNG", "src/Platformer/Images/Assassin/assassinSkidBack.PNG"};
+				"src/Platformer/Images/Assassin/assassinSkid.PNG", "src/Platformer/Images/Assassin/assassinSkidBack.PNG",
+				"src/Platformer/Images/Assassin/assassinCrouch.PNG"};
 	}
 
 	public void setImgIndex(int[] nums) {
@@ -39,11 +40,14 @@ public class Assassin extends Player {
 
 	public int getImgIndex() {
 		//Checks if player is in the air
-		if (vSpd > 0) {
+		if (vSpd >= 0 && !canJump) {
 			return (imgIndex[2]);
 		}
 		if (vSpd < 0) {
 			return (imgIndex[1]);
+		}
+		if (downState) {
+			return imgIndex[13];
 		}
 		//Checks if player staying still
 		if (Math.abs(hSpd) < 1 || mvTimer == 0) {

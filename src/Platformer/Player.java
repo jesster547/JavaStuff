@@ -17,7 +17,8 @@ public abstract class Player implements Entity {
      * canJump - True if player can jump. If player is in the air, it is false */
     protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana;
     protected double grv, vSpd, hSpd, jumpHeight, hAcc;
-    protected boolean upState = false, rightState = false, leftState = false, facingRight = true, canJump = false;
+    protected boolean upState = false, rightState = false, leftState = false, downState = false, facingRight = true,
+            canJump = false;
     protected Room room;
     protected int[] imgIndex;
 
@@ -105,11 +106,20 @@ public abstract class Player implements Entity {
             hAcc = move * 2;
         else
             hAcc = move;
+
+        if (downState && canJump) {
+            hAcc = 0;
+            hSpd *= 0.85;
+            if (Math.abs(hSpd) < 1)
+                hSpd = 0;
+        }
+
         if (move == 0) {
             hSpd = 0.9 * hSpd;
             if (Math.abs(hSpd) < 1)
                 hSpd = 0;
         }
+
         hSpd += hAcc;
         if (walkSpeed < Math.abs(hSpd))
             hSpd = sign(hSpd) * walkSpeed;
@@ -125,6 +135,7 @@ public abstract class Player implements Entity {
                 }
                 if (canJump && upState) {
                     vSpd = jumpHeight * -1; //Sends player upward (Jump)
+                    downState = false;
                 }
                 /* Checks if player will collide with a platform in the next step. If so, it
                  * will move the player as close to the platform as possible without intersecting it.
@@ -152,6 +163,15 @@ public abstract class Player implements Entity {
                 }
             }
         }
+
+        if (downState && h == 200 && canJump) {
+            h = 100;
+            y += 100;
+        } else if (!downState && h == 100) {
+            h = 200;
+            y -= 100;
+        }
+
 
         //Manages Camera
         //Moves Camera with player if possible
@@ -193,6 +213,9 @@ public abstract class Player implements Entity {
         if (k.getKeyCode() == KeyEvent.VK_LEFT) {
             leftState = true;
         }
+        if (k.getKeyCode() == KeyEvent.VK_DOWN) {
+            downState = true;
+        }
     }
 
     //Checks if keys get released
@@ -205,6 +228,9 @@ public abstract class Player implements Entity {
         }
         if (k.getKeyCode() == KeyEvent.VK_LEFT) {
             leftState = false;
+        }
+        if (k.getKeyCode() == KeyEvent.VK_DOWN) {
+            downState = false;
         }
     }
 
