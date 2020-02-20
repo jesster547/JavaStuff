@@ -9,9 +9,9 @@ public abstract class Player implements Entity {
      * w & h - Dimensions of Player (Hit box)
      * walkSpeed - Horizontal Distance Player Travels each step
      * weapIndex - Which weapon player uses 0, 1, or 2
-     * grv - Gravity
+     * grv & hAcc - Gravity (Vertical Acceleration) and horizontal acceleration
      * vSpd & hSpd - Speed player is travelling (Vertical and Horizontal)
-     * upState, rightState, & leftState - Detects of keys that are being pressed
+     * upState, downState, rightState, & leftState - Detects of keys that are being pressed
      * room - The room the player is in
      * imgIndex - The indexes the room uses to display images
      * canJump - True if player can jump. If player is in the air, it is false */
@@ -107,6 +107,7 @@ public abstract class Player implements Entity {
         else
             hAcc = move;
 
+        //Implements faster deceleration when player is crouched
         if (downState && canJump) {
             hAcc = 0;
             hSpd *= 0.85;
@@ -114,18 +115,25 @@ public abstract class Player implements Entity {
                 hSpd = 0;
         }
 
-        if (move == 0) {
+        //The deceleration when the player is not crouched
+        else if (move == 0) {
             hSpd = 0.9 * hSpd;
             if (Math.abs(hSpd) < 1)
                 hSpd = 0;
         }
 
+        //Increases/Decreases hSpd by hAcc
         hSpd += hAcc;
+
+        //Limits speed of player
         if (walkSpeed < Math.abs(hSpd))
             hSpd = sign(hSpd) * walkSpeed;
-        vSpd += grv;             //Changes vSpd for gravity
 
-        canJump = false;     //Used to determine if player can jump or is in the air
+        //Changes vSpd for gravity
+        vSpd += grv;
+
+        //Used to determine if player can jump or is in the air
+        canJump = false;
         //Checks all entities for Platforms
         for (Entity i : room.entityList) {
             if (i instanceof Platform) {

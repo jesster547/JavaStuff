@@ -46,7 +46,10 @@ public class Assassin extends Player {
 		if (vSpd < 0) {
 			return (imgIndex[1]);
 		}
+
+		//Checks if player is crouching and resets running animation
 		if (downState) {
+			mvTimer = 0;
 			return imgIndex[13];
 		}
 		//Checks if player staying still
@@ -55,12 +58,14 @@ public class Assassin extends Player {
 		}
 		//Player is on ground moving. Animation of 8 frames running at 12 frames per second
 		else {
-			//Skidding Animation & Skidding backwards animation
+			//Skidding Animation & Skidding backwards animation. Resets running animation
 			if (!leftState && !rightState) {
+				mvTimer=0;
 				if ((hSpd > 0 && facingRight) || (hSpd < 0 && !facingRight))
 					return imgIndex[11];
 				return imgIndex[12];
 			}
+			//Iterates through the running animation
 			int mvMod = mvTimer % 40;
 			if (mvMod == 0)
 				return imgIndex[10];
