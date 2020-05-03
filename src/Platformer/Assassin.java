@@ -2,7 +2,12 @@ package Platformer;
 
 
 public class Assassin extends Player {
-	private int maxHealth, maxMana, healthPoints, manaPoints, weaponIndex, mvTimer;
+	private int maxHealth;
+	private int maxMana;
+	private int healthPoints;
+	private int manaPoints;
+	private final int weaponIndex;
+	private int mvTimer;
 
 	public Assassin(int x, int y, int w, int h, int i) {
 		super(x, y, w, h, i);

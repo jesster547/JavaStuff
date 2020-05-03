@@ -4,7 +4,10 @@ import java.awt.*;
 
 public class Platform implements Entity {
     //Initializes instance variables
-    private int x, y, w, h;
+    private final int x;
+    private final int y;
+    private final int w;
+    private final int h;
     Room room;
     int[] imgIndex;
 

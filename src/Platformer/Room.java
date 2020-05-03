@@ -12,7 +12,7 @@ public class Room extends JPanel {
     private int camX = 0;               //Position of Camera
     public int width;                   //Width of the room
     public int floorY;                  //Height of the floor platform
-    private ArrayList<Image> imgList;   //List of all entity images
+    private final ArrayList<Image> imgList;   //List of all entity images
 
     public Room(ArrayList<Entity> entities, int width, int floorY) {
         this.setBackground(Color.BLUE);

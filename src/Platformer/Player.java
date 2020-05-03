@@ -61,15 +61,15 @@ public abstract class Player implements Entity {
         return this.healthPoints;
     }
 
-    public boolean facingRight() {
-        return facingRight;
-    }
-
     void setHealth(int damage) {
         this.healthPoints -= damage;    //subtracts damage make damage negative for heals
         if (this.healthPoints > this.maxHealth) {
             this.healthPoints = this.maxHealth;
         }
+    }
+
+    public boolean facingRight() {
+        return facingRight;
     }
 
     int getMana() {
@@ -264,14 +264,14 @@ public abstract class Player implements Entity {
         return new String[]{"src/Platformer/Images/stockImage.png"};
     }
 
-    //Sets the list of indexes to display images
-    public void setImgIndex(int[] nums) {
-        imgIndex = nums;
-    }
-
     //Contains logic for which image is to be displayed at a point in time
     public int getImgIndex() {
         return (imgIndex[0]);
+    }
+
+    //Sets the list of indexes to display images
+    public void setImgIndex(int[] nums) {
+        imgIndex = nums;
     }
 
     //Returns whether or not a player can jump

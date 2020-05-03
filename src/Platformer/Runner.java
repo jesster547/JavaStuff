@@ -10,7 +10,7 @@ public class Runner {
         //Creates list of entities to be placed into room
         ArrayList<Entity> entities = new ArrayList<>();
         //Adds new entities to list (Floor and boundaries are automatically added to room
-        entities.add(new Background(0, 0, 4021, 766, "src/Platformer/Images/backGround_1.png"));
+        entities.add(new Background(4021, 766, "src/Platformer/Images/backGround_1.png"));
         entities.add(new Platform(300, 400, 150, 100));
         entities.add(new Assassin(200, 200, 150, 200, 1));
         //entities.add(new Bot(800,200,100,299,1));
