@@ -24,6 +24,7 @@ public class Room extends JPanel {
         entityList.add(new Platform(0, floorY, width, 900 - floorY)); //Adds ground
         entityList.add(new Platform(-1, 0, 1, 900));           //Adds Left Wall
         entityList.add(new Platform(width, 0, 1, 900));           // Adds Right Wall
+        entityList.add(new Platform(2400,500,400,50));
 
         //Binds all entities to this room and generates list of images
         for (Entity i : entityList) {
