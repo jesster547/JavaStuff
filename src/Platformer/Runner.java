@@ -12,7 +12,7 @@ public class Runner {
         //Adds new entities to list (Floor and boundaries are automatically added to room
         entities.add(new Platform(300, 400, 150, 100));
         entities.add(new Assassin(200, 200, 150, 200, 1));
-        entities.add(new Bot(500,200,100,250,1));
+        entities.add(new Bot(800,200,100,299,1));
         //Creates new room, sets width of room and heigth of floor. Also passes list of entities into the room
         Room testingRoom = new Room(entities, 4021, 766);
         //Puts the room onto the screen
