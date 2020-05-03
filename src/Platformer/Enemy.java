@@ -7,7 +7,13 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public abstract class Enemy implements Entity {
-    public Enemy(int x, int y, int w, int h){
+    protected int x, y, w, h, walkSpeed, healthPoints, manaPoints, maxHealth, maxMana;
+    protected double grv, vSpd, hSpd, jumpHeight, hAcc;
+    protected boolean leftState, rightState, upState, canJump;
+    protected Room room;
+    protected int[] imgIndex;
+
+    public Enemy(int x, int y, int w, int h) {
         walkSpeed = 13;
         healthPoints = 100;
         manaPoints = 100;
@@ -22,9 +28,12 @@ public abstract class Enemy implements Entity {
         this.y = y;
         this.w = w;
         this.h = h;
-        setStats(10, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
-
+        boolean leftState = false;
+        boolean rightState = false;
+        boolean canJump = false;
+        boolean upState = false;
     }
+
     public void setRoom(Room room) {
         this.room = room;
     }
@@ -36,6 +45,7 @@ public abstract class Enemy implements Entity {
     void setHealth(int damage) {
 
     }
+
     int getMana() {
         return this.manaPoints;
     }
@@ -43,55 +53,112 @@ public abstract class Enemy implements Entity {
     void setMana(int cost) {
 
     }
+
     public void step() {
-    vrand = math.random()*3;// 0-2
-    hrand = math.random()*3;//0-2
-        if(vrand == 0){
+        upState = false;
+        int vrand = (int) (Math.random() * 1000);// 0-2
+        int hrand = (int) (Math.random() * 1000);//0-999
+        //horizontal decisions
+        if (leftState) {
+            if (hrand == 0) {
+                leftState = false;
+                rightState = false;
+            } else if (hrand == 1) {
+                leftState = false;
+                rightState = true;
+            }
+        } else if (rightState) {
+
+            if (hrand == 0) {
+                leftState = false;
+                rightState = false;
+            } else if (hrand == 1) {
+                leftState = true;
+                rightState = false;
+            }
+        } else {
+            if (hrand == 0) {
+                leftState = true;
+                rightState = false;
+            } else if (hrand == 1) {
+                leftState = false;
+                rightState = true;
+            }
+        }
+        //vertical decisions
+        if (vrand == 0) {
             upState = true;
-            downstate = false;
         }
-        else if(vrand == 1) {
-            upState = false;
-            downState = true;
-        }
-        else { //vrand == 2
-            upState = false;
-            downState = false;
-        }
-        if(hrand == 0){
-            leftState = true;
-            rightState = false;
-        }
-        else if(hrand == 1){
-            leftState = false;
-            rightState = true;
-        }
-        else{
-            leftState = false;
-            rightState = false;
-        }
+        direction(leftState, rightState);
 
-
-
+        for (Entity i : room.entityList) {
+            if (i instanceof Platform) {
+                //Checks if Platform is directly below. If so, player can jump. Stays true once it becomes
+                if (!canJump) {
+                    canJump = i.getBounds().intersects(new Rectangle(x, y + 1, w, h));
+                }
+                if (canJump && upState) {
+                    vSpd = jumpHeight * -1; //Sends player upward (Jump)
+                }
+                /* Checks if player will collide with a platform in the next step. If so, it
+                 * will move the player as close to the platform as possible without intersecting it.
+                 * Then, it sets vSpd/hSpd to 0, so it will not move in the direction. */
+                if (i.getBounds().intersects(new Rectangle(x + (int) hSpd, y, w, h))) {
+                    while (!i.getBounds().intersects(new Rectangle(x + (int) sign(hSpd), y, w, h))) {
+                        x += sign((int) hSpd);
+                    }
+                    hSpd = 0;
+                }
+                if (i.getBounds().intersects(new Rectangle(x, y + (int) vSpd, w, h))) {
+                    while (!i.getBounds().intersects(new Rectangle(x, y + (int) sign(vSpd), w, h))) {
+                        y += sign((int) vSpd);
+                    }
+                    vSpd = 0;
+                }
+                //Tests if player is inside a platform, and pushes player horizontally out of the shortest side
+                if (i.getBounds().intersects(new Rectangle(x, y, w, h))) {
+                    int distRight = Math.abs((int) (i.getBounds().getX() - (x + w)));
+                    int distLeft = Math.abs((int) (x - (i.getBounds().getX() + i.getBounds().getWidth())));
+                    if (distRight < distLeft) {
+                        x = (int) (i.getBounds().getX() - w);
+                    } else
+                        x = (int) (i.getBounds().getX() + i.getBounds().getWidth());
+                }
+            }
+        }
+        this.x += hSpd;
+        this.y += vSpd;
     }
-    public void goplaces(upState,downState,leftState,rightState){
-        int dir = 1
-        if (leftState = true){
 
-        }
-        else if (rightState = true) {
-
-        }
-        else{
-
-        }
+    private double sign(double num) {
+        if (num != 0)
+            return (num / Math.abs(num));
+        return (0);
     }
+
+    public double direction(boolean leftState, boolean rightState) {
+        int dir = 0;
+        if (leftState) {
+            dir += -1;
+        } else if (rightState) {
+            dir += 1;
+        }
+        return (double) sideMovement(dir);
+    }
+
+    public double sideMovement(int dir) {
+
+        hSpd += hAcc * dir;
+        return hSpd;
+    }
+
     public void paint(Graphics2D g) {
         g.setColor(new Color(74, 204, 111, 100));
         if (canJump)
             g.setColor(new Color(74, 204, 111));
         g.fillRect(x - room.getCamX(), y, w, h);
     }
+
     //Returns the enemy's hit box
     public Rectangle getBounds() {
         return new Rectangle(x, y, w, h);
