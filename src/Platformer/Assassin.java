@@ -16,7 +16,7 @@ public class Assassin extends Player {
 		maxMana = 0;
 		healthPoints = 0;
 		manaPoints = 0;
-		setStats(10, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
+		setStats(100, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
 	}
 
 	void remove() {
