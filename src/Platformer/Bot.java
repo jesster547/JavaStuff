@@ -34,7 +34,7 @@ public class Bot extends Enemy {
     }
 
     void spawn() {
-
+      room.hurtboxList.add(new Hurtbox(x, y, w+10, h+10, 10, this));
     }
 
     public String[] getImgSources() {

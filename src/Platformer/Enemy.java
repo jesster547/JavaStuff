@@ -10,7 +10,7 @@ public abstract class Enemy implements Entity { //Enemy-- does not have mana
     protected int x, y, w, h, walkSpeed, healthPoints, maxHealth;
     protected double grv, vSpd, hSpd, jumpHeight, hAcc;
     protected boolean leftState, rightState, upState, canJump,facingRight;
-    protected Room room;
+    public Room room;
     protected int[] imgIndex;
 
     public Enemy(int x, int y, int w, int h) {

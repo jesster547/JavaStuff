@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 
 public class Room extends JPanel {
     ArrayList<Entity> entityList;       //List of all entities in the room
+    ArrayList<Hurtbox> hurtboxList;     //List of all hurt-boxes in the room
     private int camX = 0;               //Position of Camera
     public int width;                   //Width of the room
     public int floorY;                  //Height of the floor platform
@@ -20,15 +21,20 @@ public class Room extends JPanel {
         this.width = width;
         this.floorY = floorY;
         imgList = new ArrayList<>();
+        hurtboxList = new ArrayList<>();
 
         entityList.add(new Platform(0, floorY, width, 900 - floorY)); //Adds ground
         entityList.add(new Platform(-1, 0, 1, 900));           //Adds Left Wall
         entityList.add(new Platform(width, 0, 1, 900));           // Adds Right Wall
         entityList.add(new Platform(2400,500,400,50));
 
-        //Binds all entities to this room and generates list of images
+        //Binds all entities to this room and generates list of images. Also runs 'spawn' event when loading the room
         for (Entity i : entityList) {
             i.setRoom(this);
+            if(i instanceof Player)
+                ((Player)i).spawn();
+            if(i instanceof Enemy)
+                ((Enemy)i).spawn();
             //Temp Var to get image sources from entities
             String[] tmpImgs;
             tmpImgs = i.getImgSources();
@@ -92,6 +98,9 @@ public class Room extends JPanel {
                 }
             }
         }
+        for(Hurtbox e: hurtboxList){
+            e.step();
+        }
     }
 
     //Displays all entities in room
@@ -106,9 +115,11 @@ public class Room extends JPanel {
             if (i.facingRight()) {
                 g.drawImage(imgList.get(i.getImgIndex()), i.getX() - camX, i.getY(), (int) i.getBounds().getWidth(), (int) i.getBounds().getHeight(), null);
             } else {
-                g.drawImage(imgList.get(i.getImgIndex()), (int) (i.getX() - camX + i.getBounds().getWidth()), i.getY(), -(int) i.getBounds().getWidth(), (int) i.getBounds().getHeight(), null);
+                    g.drawImage(imgList.get(i.getImgIndex()), (int) (i.getX() - camX + i.getBounds().getWidth()), i.getY(), -(int) i.getBounds().getWidth(), (int) i.getBounds().getHeight(), null);
             }
-
+        }
+        for (Hurtbox e: hurtboxList){
+            e.paint(g2d);
         }
     }
 

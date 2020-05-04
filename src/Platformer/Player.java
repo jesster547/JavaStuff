@@ -19,7 +19,7 @@ public abstract class Player implements Entity {
     protected double grv, vSpd, hSpd, jumpHeight, hAcc;
     protected boolean upState = false, rightState = false, leftState = false, downState = false, facingRight = true,
             canJump = false;
-    protected Room room;
+    public Room room;
     protected int[] imgIndex;
 
     //Sets Variables
