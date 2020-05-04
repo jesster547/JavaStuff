@@ -9,7 +9,7 @@ import java.util.Random;
 public abstract class Enemy implements Entity { //Enemy-- does not have mana
     protected int x, y, w, h, walkSpeed, healthPoints, maxHealth;
     protected double grv, vSpd, hSpd, jumpHeight, hAcc;
-    protected boolean leftState, rightState, upState, canJump,facingRight;
+    protected boolean leftState, rightState, upState, canJump;
     public Room room;
     protected int[] imgIndex;
 
@@ -44,6 +44,7 @@ public abstract class Enemy implements Entity { //Enemy-- does not have mana
     void setHealth(int damage) {
 
     }
+
     public void step() {
         upState = false;
         int vrand = (int) (Math.random() * 250);// 0-2
@@ -66,19 +67,16 @@ public abstract class Enemy implements Entity { //Enemy-- does not have mana
                 leftState = true;
                 rightState = false;
             }
-            else
-                facingRight = true;
         } else {
             if (hrand == 0) {
                 leftState = true;
                 rightState = false;
             } else if (hrand == 1) {
                 rightState = true;
-                facingRight = true;
             }
         }
         //vertical decisions
-        if (vrand == 0 ) {
+        if (vrand == 0) {
             upState = true;
         }
         direction(leftState, rightState);
@@ -142,7 +140,7 @@ public abstract class Enemy implements Entity { //Enemy-- does not have mana
     }
 
     public double sideMovement(int dir) {
-        if (Math.abs(hSpd) < walkSpeed){
+        if (Math.abs(hSpd) < walkSpeed) {
             hSpd += hAcc * dir;
         }
         return hSpd;
@@ -187,7 +185,12 @@ public abstract class Enemy implements Entity { //Enemy-- does not have mana
 
     //Returns whether or not a player can jump
     public boolean canJump() {
-        return canJump;
+        return false;
     }
-
+    int getHealth(){
+        return this.healthPoints;
+    }
+    int getTotalHealth(){
+        return this.maxHealth;
+    }
 }

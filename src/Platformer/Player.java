@@ -61,6 +61,10 @@ public abstract class Player implements Entity {
         return this.healthPoints;
     }
 
+    int getTotalHealth(){
+        return this.maxHealth;
+    }
+
     void setHealth(int damage) {
         this.healthPoints -= damage;    //subtracts damage make damage negative for heals
         if (this.healthPoints > this.maxHealth) {
@@ -277,5 +281,8 @@ public abstract class Player implements Entity {
     //Returns whether or not a player can jump
     public boolean canJump() {
         return canJump;
+    }
+    public boolean friendly(){
+        return true;
     }
 }
