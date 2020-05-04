@@ -6,6 +6,7 @@ import java.awt.*;
 public class Bot extends Enemy {
     public Bot(int x, int y, int w, int h){
         super(x, y, w, h);
+        setStats(100,20,30);
     }
 
     public void step() {
@@ -46,5 +47,11 @@ public class Bot extends Enemy {
 
     public int getImgIndex() {
         return imgIndex[0];
+    }
+    public void setStats(int totHealth, int theWalkSpeed, int theJumpHeight) {
+        this.maxHealth = totHealth;
+        this.healthPoints = totHealth;
+        this.walkSpeed = theWalkSpeed;
+        this.jumpHeight = theJumpHeight;
     }
 }

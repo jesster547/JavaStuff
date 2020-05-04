@@ -6,22 +6,20 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-public abstract class Enemy implements Entity {
-    protected int x, y, w, h, walkSpeed, healthPoints, manaPoints, maxHealth, maxMana;
+public abstract class Enemy implements Entity { //Enemy-- does not have mana
+    protected int x, y, w, h, walkSpeed, healthPoints, maxHealth;
     protected double grv, vSpd, hSpd, jumpHeight, hAcc;
-    protected boolean leftState, rightState, upState, canJump;
+    protected boolean leftState, rightState, upState, canJump,facingRight;
     protected Room room;
     protected int[] imgIndex;
 
     public Enemy(int x, int y, int w, int h) {
         walkSpeed = 13;
         healthPoints = 100;
-        manaPoints = 100;
         hSpd = 0;
         vSpd = 0;
         jumpHeight = 0;
         maxHealth = 100;
-        maxMana = 100;
         grv = 1.5;
         hAcc = 2;
         this.x = x;
@@ -32,6 +30,7 @@ public abstract class Enemy implements Entity {
         boolean rightState = false;
         boolean canJump = false;
         boolean upState = false;
+        boolean facingRight = false;
     }
 
     public void setRoom(Room room) {
@@ -45,19 +44,11 @@ public abstract class Enemy implements Entity {
     void setHealth(int damage) {
 
     }
-
-    int getMana() {
-        return this.manaPoints;
-    }
-
-    void setMana(int cost) {
-
-    }
-
     public void step() {
         upState = false;
-        int vrand = (int) (Math.random() * 500);// 0-999
+        int vrand = (int) (Math.random() * 250);// 0-2
         int hrand = (int) (Math.random() * 500);//0-999
+
         //horizontal decisions
         if (leftState) {
             if (hrand == 0) {
@@ -75,20 +66,24 @@ public abstract class Enemy implements Entity {
                 leftState = true;
                 rightState = false;
             }
+            else
+                facingRight = true;
         } else {
             if (hrand == 0) {
                 leftState = true;
                 rightState = false;
             } else if (hrand == 1) {
                 rightState = true;
+                facingRight = true;
             }
         }
         //vertical decisions
-        if (vrand == 0) {
+        if (vrand == 0 ) {
             upState = true;
         }
         direction(leftState, rightState);
-
+        vSpd += grv;
+        canJump = false;
         for (Entity i : room.entityList) {
             if (i instanceof Platform) {
                 //Checks if Platform is directly below. If so, player can jump. Stays true once it becomes
@@ -97,6 +92,8 @@ public abstract class Enemy implements Entity {
                 }
                 if (canJump && upState) {
                     vSpd = jumpHeight * -1; //Sends player upward (Jump)
+                    upState = false;
+
                 }
                 /* Checks if player will collide with a platform in the next step. If so, it
                  * will move the player as close to the platform as possible without intersecting it.
@@ -145,8 +142,9 @@ public abstract class Enemy implements Entity {
     }
 
     public double sideMovement(int dir) {
-
-        hSpd += hAcc * dir;
+        if (Math.abs(hSpd) < walkSpeed){
+            hSpd += hAcc * dir;
+        }
         return hSpd;
     }
 
