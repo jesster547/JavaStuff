@@ -4,57 +4,47 @@ package Platformer;
 import java.awt.*;
 
 public class Bot extends Enemy {
-    public Bot(){
-
+    public Bot(int x, int y, int w, int h){
+        super(x, y, w, h);
     }
 
-    @Override
     public void step() {
-
+        super.step();
     }
 
-    @Override
     public boolean facingRight() {
-        return false;
+        return rightState;
     }
 
-    @Override
     public void paint(Graphics2D g) {
 
     }
 
-    @Override
     public Rectangle getBounds() {
-        return null;
+        return new Rectangle(x, y, w, h);
     }
 
-    @Override
     public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    void remove() {
 
     }
 
-    @Override
+    void spawn() {
+
+    }
+
     public String[] getImgSources() {
-        return new String[0];
+        return new String[]{"src/Platformer/Images/stockImage.png"};
     }
 
-    @Override
     public void setImgIndex(int[] i) {
-
+        imgIndex = i;
     }
 
-    @Override
     public int getImgIndex() {
-        return 0;
-    }
-
-    @Override
-    public int getX() {
-        return 0;
-    }
-
-    @Override
-    public int getY() {
-        return 0;
+        return imgIndex[0];
     }
 }

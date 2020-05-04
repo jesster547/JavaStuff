@@ -18,7 +18,6 @@ public class Background implements Entity {
         this.w = w;
         this.h = h;
         this.imgSrc = imgSrc;
-        System.out.println(this.w+" "+ this.h);
     }
 
     public void step() {

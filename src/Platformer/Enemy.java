@@ -56,8 +56,8 @@ public abstract class Enemy implements Entity {
 
     public void step() {
         upState = false;
-        int vrand = (int) (Math.random() * 1000);// 0-2
-        int hrand = (int) (Math.random() * 1000);//0-999
+        int vrand = (int) (Math.random() * 500);// 0-999
+        int hrand = (int) (Math.random() * 500);//0-999
         //horizontal decisions
         if (leftState) {
             if (hrand == 0) {
@@ -70,7 +70,6 @@ public abstract class Enemy implements Entity {
         } else if (rightState) {
 
             if (hrand == 0) {
-                leftState = false;
                 rightState = false;
             } else if (hrand == 1) {
                 leftState = true;
@@ -81,7 +80,6 @@ public abstract class Enemy implements Entity {
                 leftState = true;
                 rightState = false;
             } else if (hrand == 1) {
-                leftState = false;
                 rightState = true;
             }
         }
@@ -143,7 +141,7 @@ public abstract class Enemy implements Entity {
         } else if (rightState) {
             dir += 1;
         }
-        return (double) sideMovement(dir);
+        return sideMovement(dir);
     }
 
     public double sideMovement(int dir) {
