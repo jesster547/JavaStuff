@@ -16,13 +16,13 @@ public class HealthBars implements Entity {
 
     public HealthBars(Entity en) {
         this.e = en;
-
-        if (en instanceof Enemy) {
-            this.room = ((Enemy)en).room;
+        if (e instanceof Enemy) {
+            this.room = ((Enemy)e).room;
             this.height = 20;
             this.width = 80;
-        } else if (en instanceof Assassin) {
-            this.room = ((Player)en).room;
+        } else if (e instanceof Assassin) {
+            System.out.println(e);
+            this.room = ((Player)e).room;
             this.y = 20;
             this.width = 400;
             this.height = 100;

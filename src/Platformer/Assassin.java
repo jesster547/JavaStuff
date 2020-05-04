@@ -1,6 +1,8 @@
 package Platformer;
 
 
+import java.awt.*;
+
 public class Assassin extends Player {
     private int maxHealth;
     private int maxMana;
@@ -18,15 +20,20 @@ public class Assassin extends Player {
         healthPoints = 0;
         manaPoints = 0;
         setStats(100, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
-        HealthBars HB = new HealthBars(this);
+
     }
 
     void remove() {
 
     }
+    public void paint(Graphics2D g){
+        super.paint(g);
+        HB.paint(g);
+
+    }
 
     void spawn() {
-
+         this.HB = new HealthBars(this);
     }
 
     public String[] getImgSources() {
@@ -101,6 +108,7 @@ public class Assassin extends Player {
         else
             mvTimer = 0;            //Resets animation once player stops
         this.HB.step();
+
     }
 
     public void setStats(int totHealth, int totMana, int theWalkSpeed, int theJumpHeight) {

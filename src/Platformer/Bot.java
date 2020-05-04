@@ -10,12 +10,13 @@ public class Bot extends Enemy {
     public Bot(int x, int y, int w, int h) {
         super(x, y, w, h);
         setStats(100, 20, 30);
-        HealthBars HB = new HealthBars(this);
+
     }
 
     public void step() {
         this.HB.step();
         super.step();
+        healthPoints -= 1;
     }
 
     public boolean facingRight() {
@@ -23,7 +24,7 @@ public class Bot extends Enemy {
     }
 
     public void paint(Graphics2D g) {
-
+        HB.paint(g);
     }
 
     public Rectangle getBounds() {
@@ -41,6 +42,7 @@ public class Bot extends Enemy {
 
     void spawn() {
       room.hurtboxList.add(new Hurtbox(x, y, w+10, h+10, 10, this));
+      this.HB = new HealthBars(this);
     }
 
     public String[] getImgSources() {
