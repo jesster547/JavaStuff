@@ -11,17 +11,20 @@ public class HealthBars implements Entity {
     private int curHealth;  // actual health (in pixels)
     private int color;
     private int red;
-    Room room;
+    private Room room;
     Entity e;
 
     public HealthBars(Entity en) {
         this.e = en;
+
         if (en instanceof Enemy) {
+            this.room = ((Enemy)en).room;
             this.x = en.getX();
             this.y = en.getY() - 100;
             this.height = 20;
             this.width = 80;
         } else if (en instanceof Assassin) {
+            this.room = ((Player)en).room;
             this.x = room.getCamX() + 20;
             this.y = 20;
             this.width = 400;

@@ -1,15 +1,20 @@
 package Platformer;
 
 
+import sun.awt.windows.WPrinterJob;
+
 import java.awt.*;
 
 public class Bot extends Enemy {
+    private HealthBars HB;
     public Bot(int x, int y, int w, int h) {
         super(x, y, w, h);
         setStats(100, 20, 30);
+        HealthBars HB = new HealthBars(this);
     }
 
     public void step() {
+        this.HB.step();
         super.step();
     }
 
@@ -30,7 +35,8 @@ public class Bot extends Enemy {
     }
 
     void remove() {
-
+    this.HB.step();
+        System.out.println("spawning health bar.");
     }
 
     void spawn() {

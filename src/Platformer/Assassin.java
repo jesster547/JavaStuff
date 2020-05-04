@@ -8,6 +8,7 @@ public class Assassin extends Player {
     private int manaPoints;
     private final int weaponIndex;
     private int mvTimer;
+    private HealthBars HB;
 
     public Assassin(int x, int y, int w, int h, int i) {
         super(x, y, w, h, i);
@@ -17,6 +18,7 @@ public class Assassin extends Player {
         healthPoints = 0;
         manaPoints = 0;
         setStats(100, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
+        HealthBars HB = new HealthBars(this);
     }
 
     void remove() {
@@ -98,6 +100,7 @@ public class Assassin extends Player {
             mvTimer++;                //Iterates through running frames
         else
             mvTimer = 0;            //Resets animation once player stops
+        this.HB.step();
     }
 
     public void setStats(int totHealth, int totMana, int theWalkSpeed, int theJumpHeight) {
