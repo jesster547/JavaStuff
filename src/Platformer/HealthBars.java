@@ -19,10 +19,10 @@ public class HealthBars implements Entity {
         if (e instanceof Enemy) {
             this.room = ((Enemy)e).room;
             this.height = 20;
-            this.width = 80;
+            this.width = (int)this.e.getBounds().getWidth();
         } else if (e instanceof Assassin) {
-            System.out.println(e);
-            this.room = ((Player)e).room;
+            this.room = ((Player)en).room;
+            this.x = room.getCamX() + 20;
             this.y = 20;
             this.width = 400;
             this.height = 100;
@@ -33,28 +33,19 @@ public class HealthBars implements Entity {
     @Override
     public void step() {
         if (this.e instanceof Player) { //width/totalHealth = pixels per hp
-            this.x = room.getCamX() + 20;
             this.hp = this.width / ((Player) this.e).getTotalHealth();//supposed to get health from the two classes and find pixels per hp.
             this.curHealth = (int) this.hp * ((Player) this.e).getHealth();  //shows how much health the player actually has
-            this.color = (((Player)this.e).getHealth()/((Player)this.e).getTotalHealth())*255;
-            if (this.color < 150){
-                this.red = (((Player)this.e).getTotalHealth()/((Player)this.e).getHealth())*10;
-            }
-            else{
-                this.red = 0;
-            }
+            this.color = (int)(((double)(((Player)this.e).getHealth())/((Player)this.e).getTotalHealth())*255);
+            this.red = Math.abs(this.color - 255);
         } else if (this.e instanceof Enemy) {
-            this.x = this.e.getX();
+            this.x = this.e.getX() - room.getCamX();
             this.y = this.e.getY() - 100;
             this.hp = this.width / ((Enemy) e).getTotalHealth();//supposed to get health from the two classes and find pixels per hp.
             this.curHealth = (int) this.hp * ((Enemy) this.e).getHealth();   //shows how much health the enemy actually has
-            this.color = (((Enemy)this.e).getHealth()/((Enemy)this.e).getTotalHealth())*255; //used to calculate amount of green in health bar. then it is the amount of red.
-            if (this.color < 150){
-                this.red = (((Enemy)this.e).getTotalHealth()/((Enemy)this.e).getHealth())*10;
-            }
-            else{
-                this.red = 0;
-            }
+            this.color = (int)(((double)(((Enemy)this.e).getHealth())/((Enemy)this.e).getTotalHealth())*255); //used to calculate amount of green in health bar. then it is the amount of red.
+            System.out.println(this.color);
+            this.red = Math.abs(this.color - 255);
+            System.out.println(this.red);
         }
     }
 
