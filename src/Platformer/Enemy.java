@@ -22,7 +22,6 @@ public abstract class Enemy implements Entity { //Enemy-- does not have mana
         jumpHeight = 0;
         maxHealth = 100;
         grv = 1.5;
-        hAcc = 2;
         this.x = x;
         this.y = y;
         this.w = w;
@@ -50,12 +49,6 @@ public abstract class Enemy implements Entity { //Enemy-- does not have mana
                 }
             }
         }
-    }
-    public double sideMovement(int dir) {
-        if (Math.abs(hSpd) < walkSpeed) {
-            hSpd += hAcc * dir;
-        }
-        return hSpd;
     }
 
     public void paint(Graphics2D g) {

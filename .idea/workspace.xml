@@ -19,8 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92acb7fe-7559-4c30-8e06-a3858bf37b7d" name="Default Changelist" comment="just update HealthBars and colors">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="92acb7fe-7559-4c30-8e06-a3858bf37b7d" name="Default Changelist" comment="put enemy step into bot">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Platformer/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/Bot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Platformer/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/Enemy.java" afterDir="false" />
@@ -131,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588572124416</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="put enemy step into bot">
+      <created>1588651604317</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1588651604317</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,7 +160,8 @@
     <MESSAGE value="broken attempt to add healthbars to screen" />
     <MESSAGE value="made HealthBars do what theyre supposed to do" />
     <MESSAGE value="just update HealthBars and colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="just update HealthBars and colors" />
+    <MESSAGE value="put enemy step into bot" />
+    <option name="LAST_COMMIT_MESSAGE" value="put enemy step into bot" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588489577779">
@@ -165,22 +172,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1588562422083" />
-    <state width="1877" height="89" key="GridCell.Tab.0.bottom" timestamp="1588650031062">
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1588655523985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="89" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588650031062" />
-    <state width="1877" height="89" key="GridCell.Tab.0.center" timestamp="1588650031062">
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588655523985" />
+    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1588655523985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="89" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588650031062" />
-    <state width="1877" height="89" key="GridCell.Tab.0.left" timestamp="1588650031062">
+    <state width="1877" height="404" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588655523985" />
+    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1588655523985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="89" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588650031062" />
-    <state width="1877" height="89" key="GridCell.Tab.0.right" timestamp="1588650031062">
+    <state width="1877" height="404" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588655523985" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1588655523985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="89" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588650031062" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588655523985" />
     <state x="161" y="77" width="1740" height="868" key="MergeDialog" timestamp="1588651185428">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
