@@ -33,14 +33,8 @@ public class HealthBars implements Entity {
     public void step() {
         if (this.parent instanceof Player) { //width/totalHealth = pixels per hp
             this.hp = (double)this.width / ((Player) this.parent).getTotalHealth();//supposed to get health from the two classes and find pixels per hp.
-            //System.out.println("hp"+hp);
-            System.out.println("totHP "+ ((Player)parent).getTotalHealth());
             this.curHealth = (double) this.hp * ((Player) this.parent).getHealth();  //shows how much health the player actually has
-            System.out.println("CurHP "+((Player)parent).getHealth());
-            //System.out.println("curHP "+curHealth);
-
             this.color = (int)(((double)(((Player)this.parent).getHealth())/((Player)this.parent).getTotalHealth())*255);
-
             this.red = Math.abs(this.color - 255);
 
         } else if (this.parent instanceof Enemy) {
@@ -59,7 +53,7 @@ public class HealthBars implements Entity {
 
     @Override
     public void paint(Graphics2D g) {
-        g.setColor(new Color(1, 1, 0));
+        g.setColor(new Color(0, 255, 0));
         g.fillRect(this.x, this.y, (int)this.curHealth, this.height);    // draws the health part of the health bar.
         g.setColor(Color.BLACK);
         g.drawRect(this.x, this.y, this.width, this.height);        // draws the outline of the health bar.

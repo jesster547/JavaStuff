@@ -18,7 +18,7 @@ public class Assassin extends Player {
         maxHealth = 0;
         maxMana = 0;
         manaPoints = 0;
-        setStats(500, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
+        setStats(Integer.MAX_VALUE, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
 
     }
 
@@ -109,11 +109,11 @@ public class Assassin extends Player {
 
     public void step() {
         super.step();                //Calls Player.step()
+        this.healthPoints = this.maxHealth+super.healthPoints;
         if (hSpd != 0 && canJump)    //Checks if player is on the ground running
             mvTimer++;                //Iterates through running frames
         else
             mvTimer = 0;            //Resets animation once player stops
-        System.out.println("Real HP"+this.healthPoints);
         this.HB.step();
 
     }

@@ -134,13 +134,12 @@ public abstract class Player implements Entity {
 
         //Changes vSpd for gravity
         vSpd += grv;
-
         for (Hurtbox i : room.hurtboxList){
             if(i.parent instanceof Enemy){
                 if(i.getBounds().intersects(new Rectangle(x, y, w, h)) && iFrames ==0){
-                    healthPoints-= i.damage;
+                    this.healthPoints-= i.damage;
                     vSpd -= i.vKnockback;
-                    iFrames = 120;
+                    iFrames = 20;
                     if(x+((double)w/2) >= (i.x+(i.getBounds().getWidth()/2))){
                         hSpd += i.hKnockback;
                     }
