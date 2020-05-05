@@ -3,15 +3,17 @@ package Platformer;
 import java.awt.*;
 
 public class Hurtbox implements Entity{
-    protected int x, y, w, h, damage;
+    protected int x, y, w, h, damage, hKnockback, vKnockback;
     protected Room room;
     public Entity parent;
-    public Hurtbox(int x, int y, int w, int h, int damage, Entity parent){
+    public Hurtbox(int x, int y, int w, int h, int damage, int hKnockback, int vKnockback, Entity parent){
         this.x = x;
         this.y= y;
         this.w = w;
         this.h = h;
         this.damage = damage;
+        this.hKnockback = hKnockback;
+        this.vKnockback = vKnockback;
         this.parent = parent;
         if(parent instanceof Enemy)
             this.room = ((Enemy)parent).room;

@@ -29,14 +29,12 @@ public class Bot extends Enemy {
             }
         }
         if(playerX-this.getX()>=0){
-            System.out.println("right");
             this.hSpd+= hAcc;
             if (this.hSpd > walkSpeed){
                 this.hSpd = walkSpeed;
             }
         }
         else{
-            System.out.println("left");
             this.hSpd -= hAcc;
             if (this.hSpd < walkSpeed){
                 this.hSpd = walkSpeed*-1;
@@ -110,7 +108,7 @@ public class Bot extends Enemy {
     }
 
     void spawn() {
-        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, this));
+        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, 20, 15, this));
         this.HB = new HealthBars(this);
     }
 

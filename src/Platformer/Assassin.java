@@ -17,9 +17,8 @@ public class Assassin extends Player {
         this.weaponIndex = i;
         maxHealth = 0;
         maxMana = 0;
-        healthPoints = 0;
         manaPoints = 0;
-        setStats(100, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
+        setStats(500, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
 
     }
 
@@ -34,6 +33,13 @@ public class Assassin extends Player {
 
     void spawn() {
          this.HB = new HealthBars(this);
+    }
+    public int getHealth() {
+        return this.healthPoints;
+    }
+
+    public int getTotalHealth() {
+        return this.maxHealth;
     }
 
     public String[] getImgSources() {
@@ -107,6 +113,7 @@ public class Assassin extends Player {
             mvTimer++;                //Iterates through running frames
         else
             mvTimer = 0;            //Resets animation once player stops
+        System.out.println("Real HP"+this.healthPoints);
         this.HB.step();
 
     }

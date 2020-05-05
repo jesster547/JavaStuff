@@ -8,19 +8,19 @@ public class HealthBars implements Entity {
     private int width;      // width of health bar.
     private int height;     // height of health bar.
     private double hp;      // pixels per health point
-    private int curHealth;  // actual health (in pixels)
+    private double curHealth;  // actual health (in pixels)
     private int color;
     private int red;
     private Room room;
-    Entity e;
+    Entity parent;
 
     public HealthBars(Entity en) {
-        this.e = en;
-        if (e instanceof Enemy) {
-            this.room = ((Enemy)e).room;
+        this.parent = en;
+        if (parent instanceof Enemy) {
+            this.room = ((Enemy)parent).room;
             this.height = 20;
-            this.width = (int)this.e.getBounds().getWidth();
-        } else if (e instanceof Assassin) {
+            this.width = (int)this.parent.getBounds().getWidth();
+        } else if (parent instanceof Assassin) {
             this.room = ((Player)en).room;
             this.x = room.getCamX() + 20;
             this.y = 20;
@@ -30,19 +30,24 @@ public class HealthBars implements Entity {
 
     }
 
-    @Override
     public void step() {
-        if (this.e instanceof Player) { //width/totalHealth = pixels per hp
-            this.hp = this.width / ((Player) this.e).getTotalHealth();//supposed to get health from the two classes and find pixels per hp.
-            this.curHealth = (int) this.hp * ((Player) this.e).getHealth();  //shows how much health the player actually has
-            this.color = (int)(((double)(((Player)this.e).getHealth())/((Player)this.e).getTotalHealth())*255);
+        if (this.parent instanceof Player) { //width/totalHealth = pixels per hp
+            this.hp = (double)this.width / ((Player) this.parent).getTotalHealth();//supposed to get health from the two classes and find pixels per hp.
+            //System.out.println("hp"+hp);
+            System.out.println("totHP "+ ((Player)parent).getTotalHealth());
+            this.curHealth = (double) this.hp * ((Player) this.parent).getHealth();  //shows how much health the player actually has
+            System.out.println("CurHP "+((Player)parent).getHealth());
+            //System.out.println("curHP "+curHealth);
+
+            this.color = (int)(((double)(((Player)this.parent).getHealth())/((Player)this.parent).getTotalHealth())*255);
+
             this.red = Math.abs(this.color - 255);
-        } else if (this.e instanceof Enemy) {
-            this.x = this.e.getX() - room.getCamX();
-            this.y = this.e.getY() - 100;
-            this.hp = this.width / ((Enemy) e).getTotalHealth();//supposed to get health from the two classes and find pixels per hp.
-            this.curHealth = (int) this.hp * ((Enemy) this.e).getHealth();   //shows how much health the enemy actually has
-            this.color = (int)(((double)(((Enemy)this.e).getHealth())/((Enemy)this.e).getTotalHealth())*255); //used to calculate amount of green in health bar. then it is the amount of red.
+
+        } else if (this.parent instanceof Enemy) {
+            this.x = this.parent.getX() - room.getCamX();
+            this.y = this.parent.getY() - 100;
+            this.curHealth = (int) this.hp * ((Enemy) this.parent).getHealth();   //shows how much health the enemy actually has
+            this.color = (int)(((double)(((Enemy)this.parent).getHealth())/((Enemy)this.parent).getTotalHealth())*255); //used to calculate amount of green in health bar. then it is the amount of red.
             this.red = Math.abs(this.color - 255);
         }
     }
@@ -54,8 +59,8 @@ public class HealthBars implements Entity {
 
     @Override
     public void paint(Graphics2D g) {
-        g.setColor(new Color(this.red, this.color, 0));
-        g.fillRect(this.x, this.y, this.curHealth, this.height);    // draws the health part of the health bar.
+        g.setColor(new Color(1, 1, 0));
+        g.fillRect(this.x, this.y, (int)this.curHealth, this.height);    // draws the health part of the health bar.
         g.setColor(Color.BLACK);
         g.drawRect(this.x, this.y, this.width, this.height);        // draws the outline of the health bar.
     }

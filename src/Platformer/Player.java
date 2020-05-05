@@ -1,5 +1,6 @@
 package Platformer;
 
+import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -15,7 +16,7 @@ public abstract class Player implements Entity {
      * room - The room the player is in
      * imgIndex - The indexes the room uses to display images
      * canJump - True if player can jump. If player is in the air, it is false */
-    protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana;
+    protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana, iFrames;
     protected double grv, vSpd, hSpd, jumpHeight, hAcc;
     protected boolean upState = false, rightState = false, leftState = false, downState = false, facingRight = true,
             canJump = false;
@@ -24,8 +25,6 @@ public abstract class Player implements Entity {
 
     //Sets Variables
     public Player(int x, int y, int w, int h, int i) {
-        walkSpeed = 13;
-        healthPoints = 100;
         manaPoints = 100;
         hSpd = 0;
         vSpd = 0;
@@ -34,6 +33,7 @@ public abstract class Player implements Entity {
         maxMana = 100;
         grv = 1.5;
         hAcc = 2;
+        iFrames = 0;
         this.x = x;
         this.y = y;
         this.w = w;
@@ -57,13 +57,8 @@ public abstract class Player implements Entity {
         weapIndex = weap;
     }
 
-    int getHealth() {
-        return this.healthPoints;
-    }
-
-    int getTotalHealth(){
-        return this.maxHealth;
-    }
+    abstract int getHealth();
+    abstract int getTotalHealth();
 
     void setHealth(int damage) {
         this.healthPoints -= damage;    //subtracts damage make damage negative for heals
@@ -104,6 +99,10 @@ public abstract class Player implements Entity {
             facingRight = true;
         }
 
+        if(iFrames > 0){
+            iFrames--;
+        }
+
         //Implements player's acceleration on the ground. Air acceleration is 2 times ground acceleration
         //Max speed is equal to walk speed
         if (canJump)
@@ -120,7 +119,7 @@ public abstract class Player implements Entity {
         }
 
         //The deceleration when the player is not crouched
-        else if (move == 0) {
+        else if (move == 0 || Math.abs(hSpd) > walkSpeed) {
             hSpd = 0.9 * hSpd;
             if (Math.abs(hSpd) < 1)
                 hSpd = 0;
@@ -131,11 +130,26 @@ public abstract class Player implements Entity {
 
         //Limits speed of player
         if (walkSpeed < Math.abs(hSpd))
-            hSpd = sign(hSpd) * walkSpeed;
+            hSpd -= hAcc;
 
         //Changes vSpd for gravity
         vSpd += grv;
 
+        for (Hurtbox i : room.hurtboxList){
+            if(i.parent instanceof Enemy){
+                if(i.getBounds().intersects(new Rectangle(x, y, w, h)) && iFrames ==0){
+                    healthPoints-= i.damage;
+                    vSpd -= i.vKnockback;
+                    iFrames = 120;
+                    if(x+((double)w/2) >= (i.x+(i.getBounds().getWidth()/2))){
+                        hSpd += i.hKnockback;
+                    }
+                    else
+                        hSpd -= i.hKnockback;
+
+                }
+            }
+        }
         //Used to determine if player can jump or is in the air
         canJump = false;
         //Checks all entities for Platforms
@@ -176,13 +190,6 @@ public abstract class Player implements Entity {
             }
 
         }
-        for (Hurtbox i : room.hurtboxList){
-            if(i.parent instanceof Enemy){
-                if(i.getBounds().intersects(new Rectangle(x, y, w, h))){
-                    healthPoints--;
-                }
-            }
-        }
 
         if (downState && h == 200 && canJump) {
             h = 100;
@@ -214,6 +221,8 @@ public abstract class Player implements Entity {
         g.setColor(new Color(74, 204, 111, 100));
         if (canJump)
             g.setColor(new Color(74, 204, 111));
+        if(iFrames > 0)
+            g.setColor(new Color(0, 255, 255, 100));
         g.fillRect(x - room.getCamX(), y, w, h);
     }
 
