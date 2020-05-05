@@ -100,9 +100,9 @@ public abstract class Player implements Entity {
         }
         if(iFrames > 0){
             iFrames--;
-        }
-        else if(hitStun){
-            hitStun = false;
+            if(iFrames < 10 && hitStun){
+                hitStun = false;
+            }
         }
 
         //Implements player's acceleration on the ground. Air acceleration is 2 times ground acceleration
@@ -136,6 +136,7 @@ public abstract class Player implements Entity {
 
         //Changes vSpd for gravity
         vSpd += grv;
+
         for (Hurtbox i : room.hurtboxList){
             if(i.parent instanceof Enemy){
                 if(i.getBounds().intersects(new Rectangle(x, y, w, h)) && iFrames ==0){
@@ -199,6 +200,7 @@ public abstract class Player implements Entity {
 
         }
 
+        // Makes Player crouch when crouched
         if (downState && h == 200 && canJump) {
             h = 100;
             y += 100;

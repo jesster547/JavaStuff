@@ -4,15 +4,13 @@ import java.awt.*;
 
 public class Background implements Entity {
     private int[] imgIndex;
-    private int x;
-    private int y;
-    private final int w;
+    private final int w;            // Size of the background
     private final int h;
-    private final String imgSrc;
+    private final String imgSrc;    // Source of background
     private Room room;
-    /* The first sprite to be added to any room (unless object is meant to hide behind the background)
+    /* The first entity to be added to any room (unless object is meant to hide behind the background)
     * Add the source path of the image in the constructor and set width and height of the room to set background image
-    * Horizontal/vertical repetition to be added    */
+    * Horizontal/vertical repetition to be added */
 
     public Background(int w, int h, String imgSrc){
         this.w = w;

@@ -61,6 +61,7 @@ public class Assassin extends Player {
     public int getImgIndex() {
         //Checks if player has been hit
         if(iFrames>0){
+            mvTimer = 0;
             return (imgIndex[13]);
         }
         //Checks if player is in the air

@@ -33,11 +33,11 @@ public class Bot extends Enemy {
         int playerX = 0;
         int playerY = 0;
         for (Player player : room.playerList) {
-            if (Math.abs(player.getX() - this.getX()) < Math.abs(playerX - this.getX()) || playerX == 0) {
-                playerX = player.getX();
+            if (Math.abs(player.getX()+(player.getBounds().getWidth()/2) - (x+((double)w/2))) < Math.abs(playerX - (x+((double)w/2)) )|| playerX == 0) {
+                playerX = (int)(player.getX()+(player.getBounds().getWidth()/2));
             }
         }
-        if(playerX-this.getX()>=0){
+        if(playerX-(x+((double)w/2))>=0){
             this.hSpd+= hAcc;
             if (this.hSpd > walkSpeed){
                 this.hSpd = walkSpeed;
@@ -52,7 +52,7 @@ public class Bot extends Enemy {
         this.vSpd  += grv;
         // Basically checks boundaries.
         for (Entity i : room.entityList) {
-            if (i instanceof Platform) {
+            if (i instanceof Platform){
                 //Checks if Platform is directly below. If so, player can jump. Stays true once it becomes
                 if (!canJump) {
                     canJump = i.getBounds().intersects(new Rectangle(x, y + 1, w, h));
@@ -117,7 +117,7 @@ public class Bot extends Enemy {
     }
 
     void spawn() {
-        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, 10, 5, this));
+        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, 30, 15, this));
         this.HB = new HealthBars(this);
     }
 

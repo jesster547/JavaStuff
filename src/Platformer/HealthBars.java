@@ -33,7 +33,7 @@ public class HealthBars implements Entity {
     public void step() {
         if (this.parent instanceof Player) { //width/totalHealth = pixels per hp
             this.hp = (double)this.width / ((Player) this.parent).getTotalHealth();//supposed to get health from the two classes and find pixels per hp.
-            this.curHealth = (double) this.hp * ((Player) this.parent).getHealth();  //shows how much health the player actually has
+            this.curHealth = this.hp * ((Player) this.parent).getHealth();  //shows how much health the player actually has
             this.color = (int)(((double)(((Player)this.parent).getHealth())/((Player)this.parent).getTotalHealth())*255);
             this.red = Math.abs(this.color - 255);
 
