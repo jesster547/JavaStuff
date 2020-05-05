@@ -18,7 +18,7 @@ public class Assassin extends Player {
         maxHealth = 0;
         maxMana = 0;
         manaPoints = 0;
-        setStats(Integer.MAX_VALUE, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
+        setStats(100, 100, 20, 33);//Health Points, Mana Points, Walk Speed, Jump Height
 
     }
 
@@ -59,6 +59,10 @@ public class Assassin extends Player {
     }
 
     public int getImgIndex() {
+        //Checks if player has been hit
+        if(iFrames>0){
+            return (imgIndex[13]);
+        }
         //Checks if player is in the air
         if (vSpd >= 0 && !canJump) {
             return (imgIndex[2]);

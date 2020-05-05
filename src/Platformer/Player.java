@@ -19,7 +19,7 @@ public abstract class Player implements Entity {
     protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana, iFrames;
     protected double grv, vSpd, hSpd, jumpHeight, hAcc;
     protected boolean upState = false, rightState = false, leftState = false, downState = false, facingRight = true,
-            canJump = false;
+            canJump = false, hitStun = false;
     public Room room;
     protected int[] imgIndex;
 
@@ -98,9 +98,11 @@ public abstract class Player implements Entity {
         if (move == 1) {
             facingRight = true;
         }
-
         if(iFrames > 0){
             iFrames--;
+        }
+        else if(hitStun){
+            hitStun = false;
         }
 
         //Implements player's acceleration on the ground. Air acceleration is 2 times ground acceleration
@@ -139,6 +141,7 @@ public abstract class Player implements Entity {
                 if(i.getBounds().intersects(new Rectangle(x, y, w, h)) && iFrames ==0){
                     this.healthPoints-= i.damage;
                     vSpd -= i.vKnockback;
+                    hitStun = true;
                     iFrames = 20;
                     if(x+((double)w/2) >= (i.x+(i.getBounds().getWidth()/2))){
                         hSpd += i.hKnockback;
@@ -169,7 +172,13 @@ public abstract class Player implements Entity {
                     while (!i.getBounds().intersects(new Rectangle(x + (int) sign(hSpd), y, w, h))) {
                         x += sign((int) hSpd);
                     }
-                    hSpd = 0;
+                    if(hitStun) {
+                        hSpd = -hSpd * .25;
+                        hitStun = false;
+                    }
+                    else
+                        hSpd = 0;
+
                 }
                 if (i.getBounds().intersects(new Rectangle(x, y + (int) vSpd, w, h))) {
                     while (!i.getBounds().intersects(new Rectangle(x, y + (int) sign(vSpd), w, h))) {
@@ -194,6 +203,9 @@ public abstract class Player implements Entity {
             h = 100;
             y += 100;
         } else if (!downState && h == 100) {
+            h = 200;
+            y -= 100;
+        } else if (h == 100 && !canJump){
             h = 200;
             y -= 100;
         }
@@ -221,7 +233,7 @@ public abstract class Player implements Entity {
         if (canJump)
             g.setColor(new Color(74, 204, 111));
         if(iFrames > 0)
-            g.setColor(new Color(0, 255, 255, 100));
+            g.setColor(new Color(255, 0, 0, 100));
         g.fillRect(x - room.getCamX(), y, w, h);
     }
 

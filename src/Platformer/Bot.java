@@ -9,8 +9,17 @@ public class Bot extends Enemy {
     boolean targeting;
     boolean notTargeting;
     int hAcc;
+
     public Bot(int x, int y, int w, int h) {
         super(x, y, w, h);
+        hAcc = 2;
+        setStats(100, 10, 30);
+
+    }
+
+    public Bot(int x, int y, int w, int h, Room room) {
+        super(x, y, w, h);
+        this.room = room;
         hAcc = 2;
         setStats(100, 10, 30);
 
@@ -108,7 +117,7 @@ public class Bot extends Enemy {
     }
 
     void spawn() {
-        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, 20, 15, this));
+        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, 10, 5, this));
         this.HB = new HealthBars(this);
     }
 
