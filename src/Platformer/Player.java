@@ -174,6 +174,14 @@ public abstract class Player implements Entity {
                         x = (int) (i.getBounds().getX() + i.getBounds().getWidth());
                 }
             }
+
+        }
+        for (Hurtbox i : room.hurtboxList){
+            if(i.parent instanceof Enemy){
+                if(i.getBounds().intersects(new Rectangle(x, y, w, h))){
+                    healthPoints--;
+                }
+            }
         }
 
         if (downState && h == 200 && canJump) {

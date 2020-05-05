@@ -119,6 +119,15 @@ public abstract class Enemy implements Entity { //Enemy-- does not have mana
                 }
             }
         }
+
+        for (Hurtbox i : room.hurtboxList){
+            if(i.parent instanceof Player){
+                if(i.getBounds().intersects(new Rectangle(x, y, w, h))){
+                    healthPoints--;
+                }
+            }
+        }
+
         this.x += hSpd;
         this.y += vSpd;
     }

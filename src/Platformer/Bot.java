@@ -16,9 +16,6 @@ public class Bot extends Enemy {
     public void step() {
         this.HB.step();
         super.step();
-        if (this.healthPoints >0) {
-            this.healthPoints--;
-        }
     }
 
     public boolean facingRight() {

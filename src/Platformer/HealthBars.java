@@ -43,9 +43,7 @@ public class HealthBars implements Entity {
             this.hp = this.width / ((Enemy) e).getTotalHealth();//supposed to get health from the two classes and find pixels per hp.
             this.curHealth = (int) this.hp * ((Enemy) this.e).getHealth();   //shows how much health the enemy actually has
             this.color = (int)(((double)(((Enemy)this.e).getHealth())/((Enemy)this.e).getTotalHealth())*255); //used to calculate amount of green in health bar. then it is the amount of red.
-            System.out.println(this.color);
             this.red = Math.abs(this.color - 255);
-            System.out.println(this.red);
         }
     }
 
