@@ -38,6 +38,7 @@ public class Room extends JPanel {
         entityList.add(new Platform(1200, 347, 400, 50,true));
         entityList.add(new Platform(1200, 296, 400, 50,true));
         entityList.add(new Platform(1200, 245, 400, 50,true));
+        entityList.add(new Platform(1200, 194, 400, 50,true));
         //hurtboxList.add(new Hurtbox(0, 0, width, 10, 0, 0, -100, new Bot(0, 0, 1, 1, this)));
 
         //Binds all entities to this room and generates list of images. Also runs 'spawn' event when loading the room

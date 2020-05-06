@@ -161,7 +161,6 @@ public abstract class Player implements Entity {
             if (i instanceof Platform) {
                 //Checks if Platform is directly below. If so, player can jump. Stays true once it becomes true
                 if (!canJump) {
-                    //if(!((Platform) i).getSoft())
                     canJump = i.getBounds().intersects(new Rectangle(x, y + h, w, 1)); // makes a new rectangle directly below.
                 }
                 if (canJump && upState && vSpd > 1) {
@@ -195,22 +194,22 @@ public abstract class Player implements Entity {
                         vSpd = 0;
                     }
                     //The platform is a soft platform
-                    else{
-                        //Checks if player is above the platform moving down/at the peak of their jump, and the player is
+                    else {
+                        //Checks if player is above the platform moving down/at the peak of their jump, and that the player is
                         //not crouching
-                        if(vSpd >= 0 && y+h <= i.getY()&&!downState){
-                            //Checks of the bottom of the player passes through the top of the platform if so, it stops
+                        if (vSpd >= 0 && y + h <= i.getY() && !downState) {
+                            //Checks if the bottom of the player passes through the top of the platform. If so, it stops
                             //vertical movement
-                            if(y+h+vSpd > i.getY()){
-                                while(y+h+1 < i.getY()){
+                            if (y + h + vSpd > i.getY()) {
+                                while (y + h < i.getY()) {
                                     y++;
                                 }
                                 vSpd = 0;
                             }
-                        }
-                        else if(vSpd >= 0 && y+h <= i.getY()&&downState){
+                        } else if (vSpd >= 0 && y + h <= i.getY() && downState) {
                             //Lessens effect of gravity when dropping through platforms
-                            vSpd -= .75;
+                            System.out.println("slow");
+                            vSpd--;
                         }
                     }
 
@@ -268,8 +267,8 @@ public abstract class Player implements Entity {
         if (iFrames > 0)
             g.setColor(new Color(255, 0, 0, 100));
         g.fillRect(x - room.getCamX(), y, w, h);
-        g.setColor(new Color(255,255,255));
-        g.fillRect(x-room.getCamX(), y+h+(int)vSpd, w, 1);
+        g.setColor(new Color(255, 255, 255));
+        g.fillRect(x - room.getCamX(), y + h + (int) vSpd, w, 1);
     }
 
     //Returns the Player's hit box

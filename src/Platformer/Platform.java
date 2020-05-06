@@ -39,10 +39,7 @@ public class Platform implements Entity {
 
     //Returns the dimensions of the Platform as a Rectangle
     public Rectangle getBounds() {
-        if (!soft)
-            return new Rectangle(x, y, w, h);
-        else
-            return new Rectangle(x, y, w, 1);
+        return new Rectangle(x, y, w, h);
     }
 
     //Binds platform to room
