@@ -58,7 +58,6 @@ public abstract class Player implements Entity {
     }
 
     abstract int getHealth();
-
     abstract int getTotalHealth();
 
     void setHealth(int damage) {
@@ -100,9 +99,9 @@ public abstract class Player implements Entity {
             facingRight = true;
         }
 
-        if (iFrames > 0) {
+        if(iFrames > 0){
             iFrames--;
-            if (iFrames < 10 && hitStun) {
+            if(iFrames < 10 && hitStun){
                 hitStun = false;
             }
         }
@@ -139,16 +138,17 @@ public abstract class Player implements Entity {
         //Changes vSpd for gravity
         vSpd += grv;
 
-        for (Hurtbox i : room.hurtboxList) {
-            if (i.parent instanceof Enemy) {
-                if (i.getBounds().intersects(new Rectangle(x, y, w, h)) && iFrames == 0) {
-                    this.healthPoints -= i.damage;
+        for (Hurtbox i : room.hurtboxList){
+            if(i.parent instanceof Enemy){
+                if(i.getBounds().intersects(new Rectangle(x, y, w, h)) && iFrames ==0){
+                    this.healthPoints-= i.damage;
                     vSpd -= i.vKnockback;
                     hitStun = true;
                     iFrames = 20;
-                    if (x + ((double) w / 2) >= (i.x + (i.getBounds().getWidth() / 2))) {
+                    if(x+((double)w/2) >= (i.x+(i.getBounds().getWidth()/2))){
                         hSpd += i.hKnockback;
-                    } else
+                    }
+                    else
                         hSpd -= i.hKnockback;
 
                 }
@@ -162,7 +162,7 @@ public abstract class Player implements Entity {
                 //Checks if Platform is directly below. If so, player can jump. Stays true once it becomes true
                 if (!canJump) {
                     //if(!((Platform) i).getSoft())
-                    canJump = i.getBounds().intersects(new Rectangle(x, y + h, w, 1)); // makes a new rectangle directly below.
+                        canJump = i.getBounds().intersects(new Rectangle(x, y + 1, w, h)); // makes a new rectangle directly below.
                 }
                 if (canJump && upState && vSpd > 1) {
                     vSpd = jumpHeight * -1; //Sends player upward (Jump)
@@ -184,38 +184,15 @@ public abstract class Player implements Entity {
 
                     }
                 }
-                //Will player be inside the platform in the next frame
                 if (i.getBounds().intersects(new Rectangle(x, y + (int) vSpd, w, h))) {
-                    //Is the platform a normal platform
-                    if (!((Platform) i).getSoft()) {
-                        //Checks if player will be inside the platform and prevents it
-                        while (!i.getBounds().intersects(new Rectangle(x, y + (int) sign(vSpd), w, h))) {
-                            y += sign((int) vSpd);
-                        }
-                        vSpd = 0;
-                    }
-                    //The platform is a soft platform
-                    else{
-                        //Checks if player is above the platform moving down/at the peak of their jump, and the player is
-                        //not crouching
-                        if(vSpd >= 0 && y+h <= i.getY()&&!downState){
-                            //Checks of the bottom of the player passes through the top of the platform if so, it stops
-                            //vertical movement
-                            if(y+h+vSpd > i.getY()){
-                                while(y+h+1 < i.getY()){
-                                    y++;
-                                }
-                                vSpd = 0;
+                        if (!(vSpd<0&&((Platform) i).getSoft())) {
+                            while (!i.getBounds().intersects(new Rectangle(x, y + (int) sign(vSpd), w, h))) {
+                                y += sign((int) vSpd);
                             }
+                            vSpd = 0;
                         }
-                        else if(vSpd >= 0 && y+h <= i.getY()&&downState){
-                            //Lessens effect of gravity when dropping through platforms
-                            vSpd -= .75;
-                        }
-                    }
 
                 }
-
                 //Tests if player is inside a platform, and pushes player horizontally out of the shortest side
                 if (i.getBounds().intersects(new Rectangle(x, y, w, h))) {
                     if (!(((Platform) i).getSoft())) {
@@ -238,7 +215,7 @@ public abstract class Player implements Entity {
         } else if (!downState && h == 100) {
             h = 200;
             y -= 100;
-        } else if (h == 100 && !canJump) {
+        } else if (h == 100 && !canJump){
             h = 200;
             y -= 100;
         }
@@ -265,11 +242,9 @@ public abstract class Player implements Entity {
         g.setColor(new Color(74, 204, 111, 100));
         if (canJump)
             g.setColor(new Color(74, 204, 111));
-        if (iFrames > 0)
+        if(iFrames > 0)
             g.setColor(new Color(255, 0, 0, 100));
         g.fillRect(x - room.getCamX(), y, w, h);
-        g.setColor(new Color(255,255,255));
-        g.fillRect(x-room.getCamX(), y+h+(int)vSpd, w, 1);
     }
 
     //Returns the Player's hit box

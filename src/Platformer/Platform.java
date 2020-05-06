@@ -60,7 +60,6 @@ public class Platform implements Entity {
         return y;
     }
 
-    //Defines whether ot mo
     public boolean getSoft() {
         return soft;
     }
