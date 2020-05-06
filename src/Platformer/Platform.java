@@ -8,15 +8,17 @@ public class Platform implements Entity {
     private final int y;
     private final int w;
     private final int h;
+    private final boolean soft;
     Room room;
     int[] imgIndex;
 
     //Sets Instance Variables
-    public Platform(int x, int y, int w, int h) {
+    public Platform(int x, int y, int w, int h, boolean soft) {
         this.x = x;
         this.y = y;
         this.h = h;
         this.w = w;
+        this.soft = soft;
     }
 
     //Required for Entity interface
@@ -26,13 +28,21 @@ public class Platform implements Entity {
     //Displays Platform on screen
     public void paint(Graphics2D g) {
         //g.setColor(new Color(170, 0, 255));
-        g.setColor(new Color(74, 131, 36));
-        g.fillRect(x - room.getCamX(), y, w, h);
+        if (!soft) {
+            g.setColor(new Color(74, 131, 36));
+            g.fillRect(x - room.getCamX(), y, w, h);
+        } else {
+            g.setColor(new Color(72, 4, 139));
+            g.fillRect(x - room.getCamX(), y, w, h);
+        }
     }
 
     //Returns the dimensions of the Platform as a Rectangle
     public Rectangle getBounds() {
-        return new Rectangle(x, y, w, h);
+        if (!soft)
+            return new Rectangle(x, y, w, h);
+        else
+            return new Rectangle(x, y, w, 1);
     }
 
     //Binds platform to room
@@ -48,6 +58,10 @@ public class Platform implements Entity {
     //Provides Y Position
     public int getY() {
         return y;
+    }
+
+    public boolean getSoft() {
+        return soft;
     }
 
     //Will always face right (No need to flip image)

@@ -17,15 +17,12 @@ public class Runner {
         ArrayList<Entity> entitiesTwo = new ArrayList<>();
         //Adds new entities to list (Floor and boundaries are automatically added to room
         entities.add(new Background(4021, 770, "src/Platformer/Images/backGround_1.png"));
-        entities.add(new Platform(300, 400, 150, 100));
+        entities.add(new Platform(300, 400, 150, 100, false));
         entities.add(new Assassin(200, 200, 150, 200, 1));
-        entities.add(new Slime(800, 100, 100, 299));
         //entities.add(new Bot(1000,200,100,299));
         entitiesTwo.add(new Background(4021, 770, "src/Platformer/Images/windowBackground.png"));
-        entitiesTwo.add(new Platform(600, 400, 150, 90));
+        entitiesTwo.add(new Platform(600, 400, 150, 90, false));
         entitiesTwo.add(new Assassin(200, 200, 150, 200, 1));
-        entitiesTwo.add(new Bot(800, 200, 100, 300));
-        entitiesTwo.add(new Bot(1000, 200, 200, 150));
         //Creates new room, sets width of room and height of floor. Also passes list of entities into the room
         Room testingRoom = new Room(entities, 4021, 766, true);
         Room testTwo = new Room(entitiesTwo, 4021, 766, true);

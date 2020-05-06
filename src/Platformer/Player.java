@@ -98,6 +98,7 @@ public abstract class Player implements Entity {
         if (move == 1) {
             facingRight = true;
         }
+
         if(iFrames > 0){
             iFrames--;
             if(iFrames < 10 && hitStun){
@@ -160,9 +161,10 @@ public abstract class Player implements Entity {
             if (i instanceof Platform) {
                 //Checks if Platform is directly below. If so, player can jump. Stays true once it becomes true
                 if (!canJump) {
-                    canJump = i.getBounds().intersects(new Rectangle(x, y + 1, w, h));
+                    //if(!((Platform) i).getSoft())
+                        canJump = i.getBounds().intersects(new Rectangle(x, y + 1, w, h)); // makes a new rectangle directly below.
                 }
-                if (canJump && upState) {
+                if (canJump && upState && vSpd > 1) {
                     vSpd = jumpHeight * -1; //Sends player upward (Jump)
                     downState = false;
                 }
@@ -170,31 +172,37 @@ public abstract class Player implements Entity {
                  * will move the player as close to the platform as possible without intersecting it.
                  * Then, it sets vSpd/hSpd to 0, so it will not move in the direction. */
                 if (i.getBounds().intersects(new Rectangle(x + (int) hSpd, y, w, h))) {
-                    while (!i.getBounds().intersects(new Rectangle(x + (int) sign(hSpd), y, w, h))) {
-                        x += sign((int) hSpd);
-                    }
-                    if(hitStun) {
-                        hSpd = -hSpd * .25;
-                        hitStun = false;
-                    }
-                    else
-                        hSpd = 0;
+                    if (!(((Platform) i).getSoft())) {
+                        while (!i.getBounds().intersects(new Rectangle(x + (int) sign(hSpd), y, w, h))) {
+                            x += sign((int) hSpd);
+                        }
+                        if (hitStun) {
+                            hSpd = -hSpd * .25;
+                            hitStun = false;
+                        } else
+                            hSpd = 0;
 
+                    }
                 }
                 if (i.getBounds().intersects(new Rectangle(x, y + (int) vSpd, w, h))) {
-                    while (!i.getBounds().intersects(new Rectangle(x, y + (int) sign(vSpd), w, h))) {
-                        y += sign((int) vSpd);
-                    }
-                    vSpd = 0;
+                        if (!(vSpd<0&&((Platform) i).getSoft())) {
+                            while (!i.getBounds().intersects(new Rectangle(x, y + (int) sign(vSpd), w, h))) {
+                                y += sign((int) vSpd);
+                            }
+                            vSpd = 0;
+                        }
+
                 }
                 //Tests if player is inside a platform, and pushes player horizontally out of the shortest side
                 if (i.getBounds().intersects(new Rectangle(x, y, w, h))) {
-                    int distRight = Math.abs((int) (i.getBounds().getX() - (x + w)));
-                    int distLeft = Math.abs((int) (x - (i.getBounds().getX() + i.getBounds().getWidth())));
-                    if (distRight < distLeft) {
-                        x = (int) (i.getBounds().getX() - w);
-                    } else
-                        x = (int) (i.getBounds().getX() + i.getBounds().getWidth());
+                    if (!(((Platform) i).getSoft())) {
+                        int distRight = Math.abs((int) (i.getBounds().getX() - (x + w)));
+                        int distLeft = Math.abs((int) (x - (i.getBounds().getX() + i.getBounds().getWidth())));
+                        if (distRight < distLeft) {
+                            x = (int) (i.getBounds().getX() - w);
+                        } else
+                            x = (int) (i.getBounds().getX() + i.getBounds().getWidth());
+                    }
                 }
             }
 
@@ -311,8 +319,5 @@ public abstract class Player implements Entity {
     //Returns whether or not a player can jump
     public boolean canJump() {
         return canJump;
-    }
-    public boolean friendly(){
-        return true;
     }
 }

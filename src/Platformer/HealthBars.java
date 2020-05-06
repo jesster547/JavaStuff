@@ -29,7 +29,7 @@ public class HealthBars implements Entity {
         }
 
     }
-
+    @Override
     public void step() {
         if (this.parent instanceof Player) { //width/totalHealth = pixels per hp
             this.hp = (double)this.width / ((Player) this.parent).getTotalHealth();//supposed to get health from the two classes and find pixels per hp.
