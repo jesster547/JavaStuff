@@ -208,7 +208,6 @@ public abstract class Player implements Entity {
                             }
                         } else if (vSpd >= 0 && y + h <= i.getY() && downState) {
                             //Lessens effect of gravity when dropping through platforms
-                            System.out.println("slow");
                             vSpd--;
                         }
                     }

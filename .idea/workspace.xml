@@ -19,21 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92acb7fe-7559-4c30-8e06-a3858bf37b7d" name="Default Changelist" comment="Added Slimes (unfinihed). Implemented Room switching (currently occurs when player dies). Lots of code clean up and commenting.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="92acb7fe-7559-4c30-8e06-a3858bf37b7d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Platformer/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Platformer/HealthBars.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/HealthBars.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Platformer/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Platformer/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CoverageOptionsProvider">
-    <option name="myAddOrReplace" value="2" />
-    <option name="myActivateViewOnRun" value="false" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,26 +48,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="coverage" />
   </component>
   <component name="RunManager">
-    <configuration name="Runner" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../Program Files/Java/jre1.8.0_201" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+    <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Platformer.Runner" />
       <module name="Basics" />
       <extension name="coverage">
@@ -86,6 +64,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Runner" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -97,90 +80,65 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588488611254</updated>
-      <workItem from="1588490191409" duration="1452000" />
     </task>
-    <task id="LOCAL-00001" summary="Showing how to commit">
-      <created>1588493538111</created>
+    <task id="LOCAL-00001" summary="Fixed enemy">
+      <created>1588561917438</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1588493538111</updated>
+      <updated>1588561917438</updated>
     </task>
-    <task id="LOCAL-00002" summary="Added Background class and implemented temp background.">
-      <created>1588496545909</created>
+    <task id="LOCAL-00002" summary="why not">
+      <created>1588561938437</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1588496545909</updated>
+      <updated>1588561938437</updated>
     </task>
-    <task id="LOCAL-00003" summary="Cleaner code">
-      <created>1588500540935</created>
+    <task id="LOCAL-00003" summary="small adjustments everywhere for healthbars, and completed not tested HealthBars.">
+      <created>1588566376543</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1588500540935</updated>
+      <updated>1588566376543</updated>
     </task>
-    <task id="LOCAL-00004" summary="Got Bot Class/Object working">
-      <created>1588550603403</created>
+    <task id="LOCAL-00004" summary="added color changing and notes to health bars">
+      <created>1588567526102</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1588550603403</updated>
+      <updated>1588567526102</updated>
     </task>
-    <task id="LOCAL-00005" summary="Added Hurtbox Class and gave Bot a hurtbox. Implemented spawn() as well.">
-      <created>1588568697518</created>
+    <task id="LOCAL-00005" summary="broken attempt to add healthbars to screen">
+      <created>1588569679273</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1588568697518</updated>
+      <updated>1588569679273</updated>
     </task>
-    <task id="LOCAL-00006" summary="Fixed Healthbars and added alternative background image.">
-      <created>1588570739760</created>
+    <task id="LOCAL-00006" summary="made HealthBars do what theyre supposed to do">
+      <created>1588570240196</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1588570739760</updated>
+      <updated>1588570240196</updated>
     </task>
-    <task id="LOCAL-00007" summary="Implemented Damage due to hurtbox. Added playerList to Room.">
-      <created>1588650947244</created>
+    <task id="LOCAL-00007" summary="just update HealthBars and colors">
+      <created>1588572124416</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1588650947244</updated>
+      <updated>1588572124416</updated>
     </task>
-    <task id="LOCAL-00008" summary="Knockback added. Healthbar needs work. Also started Slime class under Enemy.">
-      <created>1588662271504</created>
+    <task id="LOCAL-00008" summary="put enemy step into bot">
+      <created>1588651604317</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1588662271504</updated>
+      <updated>1588651604317</updated>
     </task>
-    <task id="LOCAL-00009" summary="Fixed Healthbar and HeathPoint issue.">
-      <created>1588663403438</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1588663403438</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added hurtBox at the top of the screen. Also added hitStun boolean to Player, which causes player to bounce off walls when hit">
-      <created>1588677100589</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1588677100589</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Added Slimes (unfinihed). Implemented Room switching (currently occurs when player dies). Lots of code clean up and commenting.">
-      <created>1588712580849</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1588712580849</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="9" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -195,114 +153,52 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Showing how to commit" />
-    <MESSAGE value="Added Background class and implemented temp background." />
-    <MESSAGE value="Cleaner code" />
-    <MESSAGE value="Got Bot working." />
-    <MESSAGE value="Got Bot Class/Object working" />
-    <MESSAGE value="Added Hurtbox Class and gave Bot a hurtbox. Implemented spawn() as well." />
-    <MESSAGE value="Fixed Healthbars and added alternative background image." />
-    <MESSAGE value="Implemented Damage due to hurtbox. Added playerList to Room." />
-    <MESSAGE value="Knockback added. Healthbar needs work. Also started Slime class under Enemy." />
-    <MESSAGE value="Fixed Healthbar and HeathPoint issue." />
-    <MESSAGE value="Added hurtBox at the top of the screen. Also added hitStun boolean to Player, which causes player to bounce off walls when hit" />
-    <MESSAGE value="Added Slimes (unfinihed). Implemented Room switching (currently occurs when player dies). Lots of code clean up and commenting." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Slimes (unfinihed). Implemented Room switching (currently occurs when player dies). Lots of code clean up and commenting." />
+    <MESSAGE value="Fixed enemy" />
+    <MESSAGE value="why not" />
+    <MESSAGE value="small adjustments everywhere for healthbars, and completed not tested HealthBars." />
+    <MESSAGE value="added color changing and notes to health bars" />
+    <MESSAGE value="broken attempt to add healthbars to screen" />
+    <MESSAGE value="made HealthBars do what theyre supposed to do" />
+    <MESSAGE value="just update HealthBars and colors" />
+    <MESSAGE value="put enemy step into bot" />
+    <option name="LAST_COMMIT_MESSAGE" value="put enemy step into bot" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1140" y="196" key="#Project_Structure" timestamp="1588492441480">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1140" y="196" key="#Project_Structure/0.0.2560.1400@0.0.2560.1400" timestamp="1588492441480" />
-    <state x="552" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588677389606">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588489577779">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588489577779" />
-    <state x="552" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1588677389606" />
-    <state x="952" y="385" key="#com.intellij.ide.util.MemberChooser" timestamp="1588660966464">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1588562422083">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="952" y="385" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1588660966464" />
-    <state x="990" y="571" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1588712508731">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1588562422083" />
+    <state width="1877" height="2" key="GridCell.Tab.0.bottom" timestamp="1588746683143">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="990" y="571" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2560.1400@0.0.2560.1400" timestamp="1588712508731" />
-    <state x="283" y="256" width="1997" height="975" key="DiffContextDialog" timestamp="1588741525741">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1877" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588746683143" />
+    <state width="1877" height="2" key="GridCell.Tab.0.center" timestamp="1588746683143">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="283" y="256" width="1997" height="975" key="DiffContextDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1588741525741" />
-    <state x="878" y="322" key="FileChooserDialogImpl" timestamp="1588493042730">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1877" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588746683143" />
+    <state width="1877" height="2" key="GridCell.Tab.0.left" timestamp="1588746683143">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="878" y="322" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1588493042730" />
-    <state width="2096" height="257" key="GridCell.Tab.0.bottom" timestamp="1588743255641">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1877" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588746683143" />
+    <state width="1877" height="2" key="GridCell.Tab.0.right" timestamp="1588746683143">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588489664456" />
-    <state width="2096" height="257" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1588743255641" />
-    <state width="2096" height="257" key="GridCell.Tab.0.center" timestamp="1588743255641">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1877" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588746683143" />
+    <state x="161" y="77" width="1740" height="868" key="MergeDialog" timestamp="1588651185428">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588489664456" />
-    <state width="2096" height="257" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1588743255641" />
-    <state width="2096" height="257" key="GridCell.Tab.0.left" timestamp="1588743255641">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="161" y="77" width="1740" height="868" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588651185428" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588572126378">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588489664456" />
-    <state width="2096" height="257" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1588743255641" />
-    <state width="2096" height="257" key="GridCell.Tab.0.right" timestamp="1588743255641">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588572126378" />
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588650968279">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588489664456" />
-    <state width="2096" height="257" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1588743255641" />
-    <state width="2096" height="415" key="GridCell.Tab.1.bottom" timestamp="1588712662102">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2096" height="415" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1588712662102" />
-    <state width="2096" height="415" key="GridCell.Tab.1.center" timestamp="1588712662102">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2096" height="415" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1588712662102" />
-    <state width="2096" height="415" key="GridCell.Tab.1.left" timestamp="1588712662102">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2096" height="415" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1588712662102" />
-    <state width="2096" height="415" key="GridCell.Tab.1.right" timestamp="1588712662102">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2096" height="415" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1588712662102" />
-    <state x="212" y="138" key="MergeDialog" timestamp="1588656437621">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="212" y="138" key="MergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1588656437621" />
-    <state x="933" y="658" width="389" height="264" key="MultipleFileMergeDialog" timestamp="1588568783869">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="933" y="658" width="389" height="264" key="MultipleFileMergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1588568783869" />
-    <state x="597" y="360" key="SettingsEditor" timestamp="1588677165236">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="597" y="360" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1588677165236" />
-    <state x="535" y="409" key="Vcs.Push.Dialog.v2" timestamp="1588712582695">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="535" y="409" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1588712582695" />
-    <state width="560" height="1398" key="com.intellij.byteCodeViewer.ShowByteCodeAction" timestamp="1588495488100">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="560" height="1398" key="com.intellij.byteCodeViewer.ShowByteCodeAction/0.0.2560.1400@0.0.2560.1400" timestamp="1588495488100" />
-    <state x="583" y="535" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588740901871">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="583" y="535" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1588740901871" />
-    <state x="820" y="347" width="672" height="678" key="search.everywhere.popup" timestamp="1588677156596">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="820" y="347" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1588677156596" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Basics$Runner.ic" NAME="Runner Coverage Results" MODIFIED="1588570823291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Platformer.*</FILTER>
-    </SUITE>
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588650968279" />
   </component>
 </project>
