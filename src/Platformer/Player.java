@@ -147,7 +147,7 @@ public abstract class Player implements Entity {
         //Handles variable jump height. The longer the key is pressed, the higher player jumps.
         if (upStateTimer > 0 && vSpd <= 0) {
             vAcc = -jumpHeight / upStateTimer;
-            if (Math.abs(vAcc) < 1.5) //When vAcc is = 1.5, player is at peak of jump, so set vAcc to 0 so player is influenced only by gravity
+            if (Math.abs(vAcc) < 2.5) //When vAcc is = 1.5, player is at peak of jump, so set vAcc to 0 so player is influenced only by gravity
                 vAcc = 0;
             downState = false;
         } else {
@@ -156,8 +156,8 @@ public abstract class Player implements Entity {
 
         //Increases/Decreases hSpd by hAcc
         hSpd += hAcc;
-        //Changes vSpd for gravity (1.5) & vertical acceleration (vAcc)
-        vSpd += vAcc + 1.5;
+        //Changes vSpd for gravity (2.5) & vertical acceleration (vAcc)
+        vSpd += vAcc + 2.5;
 
         //Limits speed of player
         if (walkSpeed < Math.abs(hSpd))
@@ -211,10 +211,13 @@ public abstract class Player implements Entity {
                         while (!i.getBounds().intersects(x, y + sign(vSpd), w, h)) {
                             y += sign((int) vSpd);
                         }
-                        if(vSpd < 0)
-                            vSpd = -vSpd *0.5;
-                        else
-                            vSpd = 0;
+                        vSpd = 0;
+                        //Checks if player is moving up and, if so, stops their downward acceleration
+                        if(vAcc < 0){
+                            vAcc = 0;
+                            upStateLock = true;
+                            upStateTimer = 0;
+                        }
                     }
                     //The platform is a soft platform
                     else {

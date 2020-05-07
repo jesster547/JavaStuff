@@ -58,7 +58,7 @@ public class Slime extends Enemy{
         }
 
         //Changes speed based on acceleration
-        this.vSpd  += 1.5;
+        this.vSpd  += 2.5;
         hSpd += hAcc;
 
         //Caps ground speed at 3 pixels/frame
