@@ -19,7 +19,7 @@ public class Runner {
         entities.add(new Background(4021, 770, "src/Platformer/Images/backGround_1.png"));
         entities.add(new Platform(300, 400, 150, 100, false));
         entities.add(new Assassin(200, 200, 150, 200, 1));
-        entities.add(new Slime(1000,200,100,299));
+        entities.add(new Slime(1000,200,100,100));
         entitiesTwo.add(new Background(4021, 770, "src/Platformer/Images/windowBackground.png"));
         entitiesTwo.add(new Platform(600, 400, 150, 90, false));
         entitiesTwo.add(new Assassin(200, 200, 150, 200, 1));
@@ -71,7 +71,7 @@ public class Runner {
         //Core game loop; Steps game and refreshes the look. Then waits 16 ms to achieve 60 fps.
         //Added roomTwo and testTwo in order to test multiple rooms
         while (true) {
-            if (testingRoom.entityList.size() >= 8) {
+            if (testingRoom.entityList.size() >= 9) {
                 testingRoom.step();
                 testingRoom.repaint();
             } else {

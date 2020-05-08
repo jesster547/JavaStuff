@@ -34,12 +34,14 @@ public class Room extends JPanel {
         entityList.add(new Platform(width, 0, 1, 900,false));           // Adds Right Wall
         entityList.add(new Platform(2400, 500, 400, 100,false));
         entityList.add(new Platform(1200, 444, 400, 50,true));
+        /*
         entityList.add(new Platform(1200, 388, 400, 50,true));
         entityList.add(new Platform(1200, 332, 400, 50,true));
         entityList.add(new Platform(1200, 276, 400, 50,true));
         entityList.add(new Platform(1200, 220, 400, 50,true));
         entityList.add(new Platform(1200, 164, 400, 50,true));
-        //hurtboxList.add(new Hurtbox(0, 0, width, 10, 0, 0, -100, new Bot(0, 0, 1, 1, this)));
+         */
+        //hurtboxList.add(new Hurtbox(0, 0, width, 10, 10, 0, -100, new Bot(0, 0, 1, 1, this)));
 
         //Binds all entities to this room and generates list of images. Also runs 'spawn' event when loading the room
         for (Entity i : entityList) {

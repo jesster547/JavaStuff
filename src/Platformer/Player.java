@@ -96,6 +96,7 @@ public abstract class Player implements Entity {
         if (upState && !upStateLock)
             upStateTimer++;
         else {
+            vAcc = 0;
             upStateTimer = 0;
             upStateLock = true;
         }
@@ -183,8 +184,9 @@ public abstract class Player implements Entity {
         //Checks all entities for Platforms
         for (Entity i : room.entityList) {
             if (i instanceof Platform) {
-                //Checks if Platform is directly below. If so, player can jump. Stays true once it becomes true
-                if (!canJump) {
+                //Checks if Platform is directly below. If so, player can jump. Stays true once it becomes true. Player
+                //must be moving down/not moving in order to jump
+                if (!canJump && vSpd >= 0) {
                     canJump = i.getBounds().intersects(new Rectangle(x, y + h, w, 1)); // makes a new rectangle directly below.
                 }
                 /* Checks if player will collide with a platform in the next step. If so, it
