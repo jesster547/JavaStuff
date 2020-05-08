@@ -1,6 +1,9 @@
 package Platformer;
 
+import com.sun.media.jfxmediaimpl.HostUtils;
+
 import java.awt.*;
+import java.util.function.DoubleToIntFunction;
 
 public class Slime extends Enemy{
     private int jumpTimer, jumpPos, currentPos;
@@ -24,9 +27,23 @@ public class Slime extends Enemy{
                 playerX = (int)(player.getX()+(player.getBounds().getWidth()/2));
             }
         }
+        //Adds temporary landing hitboxes onto slime
+        if(jumpTimer == 179) {
+            room.hurtboxList.add(new Hurtbox(x-50, y+h-50, 50, 50, 5, 7, 2, true,this));
+            room.hurtboxList.add(new Hurtbox(x+w, y+h-50, 50, 50, 5, 7, 2, true, this));
+        }
+        //Removes temporary landing hitbixes
+        if(jumpTimer == 160){
+            for(int i = 0; i < room.hurtboxList.size(); i++){
+                if(room.hurtboxList.get(i).parent == this && room.hurtboxList.get(i).isTemp()){
+                    room.hurtboxList.remove(i);
+                    i--;
+                }
+            }
+        }
         //Checks if Slime can jump and is on cooldown to jump. If so, it decreases the cooldown by one frame and
         // accelerates the slime toward the player. Also handles facingRight.
-        if(jumpTimer > 0 && canJump) { ;
+        if(jumpTimer > 0 && canJump) {
             jumpTimer--;
             int dir = 0;
             if(playerX - (x+(w/2)) != 0){
@@ -44,7 +61,7 @@ public class Slime extends Enemy{
         //it resets the cooldown and sets the target position it is jumping to and the position it is jumping from. Also
         //sets vSpd to -40 to launch slime into the air
         else if(jumpTimer == 0 && canJump && Math.abs(playerX - x) < 800){
-            jumpTimer = 180;
+            jumpTimer = 181;
             jumpPos = playerX;
             currentPos = x;
             vSpd = -40;
@@ -125,6 +142,7 @@ public class Slime extends Enemy{
 
     public void spawn() {
         healthbar = new HealthBars(this);
+        room.hurtboxList.add(new Hurtbox(x, y, w, h, 7, 10, 5, false, this));
     }
 
     public boolean facingRight() {

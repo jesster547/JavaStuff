@@ -110,8 +110,10 @@ public class Room extends JPanel {
                     g.drawImage(imgList.get(i.getImgIndex()), (int) (i.getX() - camX + i.getBounds().getWidth()), i.getY(), -(int) i.getBounds().getWidth(), (int) i.getBounds().getHeight(), null);
             }
         }
-        for (Hurtbox e: hurtboxList){
-            e.paint(g2d);
+        for (Hurtbox hurtbox : hurtboxList) {
+            if(hurtbox != null)
+                hurtbox.paint(g2d);
+
         }
     }
 
