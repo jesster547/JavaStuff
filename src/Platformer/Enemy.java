@@ -54,7 +54,7 @@ public abstract class Enemy implements Entity { //Enemy-- does not have mana
     public void paint(Graphics2D g) {
         g.setColor(new Color(74, 204, 111, 100));
         if (canJump)
-            g.setColor(new Color(74, 204, 111));
+            g.setColor(new Color(73, 204, 111));
         g.fillRect(x - room.getCamX(), y, w, h);
     }
 

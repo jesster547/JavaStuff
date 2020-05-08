@@ -10,16 +10,20 @@ public abstract class Player implements Entity {
      * w & h - Dimensions of Player (Hit box)
      * walkSpeed - Horizontal Distance Player Travels each step
      * weapIndex - Which weapon player uses 0, 1, or 2
-     * grv & hAcc - Gravity (Vertical Acceleration) and horizontal acceleration
+     * iFrames - Makes player invulnerable while it is > 0. Reduces every step
+     * upStateTimer - Increases whle upState is true. Handles variable jump height
+     * vAcc & hAcc - Gravity (Vertical Acceleration) and horizontal acceleration
      * vSpd & hSpd - Speed player is travelling (Vertical and Horizontal)
      * upState, downState, rightState, & leftState - Detects of keys that are being pressed
      * room - The room the player is in
      * imgIndex - The indexes the room uses to display images
-     * canJump - True if player can jump. If player is in the air, it is false */
-    protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana, iFrames;
-    protected double grv, vSpd, hSpd, jumpHeight, hAcc;
+     * canJump - True if player can jump. If player is in the air, it is false
+     * hitStun - Makes player bounce horizontally off platforms in the first 10 frames after being hit
+     * upStateLock - Locks upState's value when player is in air Players cannot jump twice while in air*/
+    protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana, iFrames, upStateTimer;
+    protected double vAcc, vSpd, hSpd, jumpHeight, hAcc;
     protected boolean upState = false, rightState = false, leftState = false, downState = false, facingRight = true,
-            canJump = false, hitStun = false;
+            canJump = false, hitStun = false, upStateLock = false;
     public Room room;
     protected int[] imgIndex;
 
@@ -31,7 +35,7 @@ public abstract class Player implements Entity {
         jumpHeight = 0;
         maxHealth = 100;
         maxMana = 100;
-        grv = 1.5;
+        vAcc = 0;
         hAcc = 2;
         iFrames = 0;
         this.x = x;
@@ -85,8 +89,19 @@ public abstract class Player implements Entity {
 
     //Handles Collision and Movement of Player
     public void step() {
+        //Times how long the up key has been pressed. Only allows upStateTimer to increase when the player jumps off the
+        //ground. Resets back to 0 when the up key is released
+        if (canJump)
+            upStateLock = false;
+        if (upState && !upStateLock)
+            upStateTimer++;
+        else {
+            upStateTimer = 0;
+            upStateLock = true;
+        }
         int rightInt = 0;    //Used to determine Direction player is moving
         int leftInt = 0;     //Used to determine Direction player is moving
+
         if (rightState)
             rightInt = 1;
         if (leftState)
@@ -129,8 +144,20 @@ public abstract class Player implements Entity {
                 hSpd = 0;
         }
 
+        //Handles variable jump height. The longer the key is pressed, the higher player jumps.
+        if (upStateTimer > 0 && vSpd <= 0) {
+            vAcc = -jumpHeight / upStateTimer;
+            if (Math.abs(vAcc) < 2.5) //When vAcc is = 1.5, player is at peak of jump, so set vAcc to 0 so player is influenced only by gravity
+                vAcc = 0;
+            downState = false;
+        } else {
+            vAcc = 0;
+        }
+
         //Increases/Decreases hSpd by hAcc
         hSpd += hAcc;
+        //Changes vSpd for gravity (2.5) & vertical acceleration (vAcc)
+        vSpd += vAcc + 2.5;
 
         //Limits speed of player
         if (walkSpeed < Math.abs(hSpd))
@@ -188,10 +215,16 @@ public abstract class Player implements Entity {
                     //Is the platform a normal platform
                     if (!((Platform) i).getSoft()) {
                         //Checks if player will be inside the platform and prevents it
-                        while (!i.getBounds().intersects(new Rectangle(x, y + (int) sign(vSpd), w, h))) {
+                        while (!i.getBounds().intersects(x, y + sign(vSpd), w, h)) {
                             y += sign((int) vSpd);
                         }
                         vSpd = 0;
+                        //Checks if player is moving up and, if so, stops their downward acceleration
+                        if(vAcc < 0){
+                            vAcc = 0;
+                            upStateLock = true;
+                            upStateTimer = 0;
+                        }
                     }
                     //The platform is a soft platform
                     else {
@@ -206,9 +239,6 @@ public abstract class Player implements Entity {
                                 }
                                 vSpd = 0;
                             }
-                        } else if (vSpd >= 0 && y + h <= i.getY() && downState) {
-                            //Lessens effect of gravity when dropping through platforms
-                            vSpd--;
                         }
                     }
 
@@ -255,7 +285,6 @@ public abstract class Player implements Entity {
         //Changes player's position
         x += hSpd;
         y += vSpd;
-
     }
 
     //Displays player (Placeholder until we add a real sprite)
@@ -266,8 +295,6 @@ public abstract class Player implements Entity {
         if (iFrames > 0)
             g.setColor(new Color(255, 0, 0, 100));
         g.fillRect(x - room.getCamX(), y, w, h);
-        g.setColor(new Color(255, 255, 255));
-        g.fillRect(x - room.getCamX(), y + h + (int) vSpd, w, 1);
     }
 
     //Returns the Player's hit box

@@ -1,12 +1,9 @@
 package Platformer;
 
-import com.sun.deploy.security.SelectableSecurityManager;
-
 import java.awt.*;
-import java.util.jar.JarOutputStream;
 
 public class Slime extends Enemy{
-    private int jumpTimer, jumpPos, currentPos, playerX;
+    private int jumpTimer, jumpPos, currentPos;
     private double hSpd, hAcc, vSpd;
     private boolean facingRight;
 
@@ -18,7 +15,7 @@ public class Slime extends Enemy{
     public void step(){
         facingRight = false;
         // Gets closest player's x position
-        playerX = 0;
+        int playerX = 0;
         //Sets playerX to the middle of the player's hitbox
         for (Player player : room.playerList) {
             if (Math.abs(player.getX()+(player.getBounds().getWidth()/2) - (x+((double)w/2))) < Math.abs(playerX - (x+((double)w/2)) )|| playerX == 0) {
@@ -61,7 +58,7 @@ public class Slime extends Enemy{
         }
 
         //Changes speed based on acceleration
-        this.vSpd  += 1.5;
+        this.vSpd  += 2.5;
         hSpd += hAcc;
 
         //Caps ground speed at 3 pixels/frame
