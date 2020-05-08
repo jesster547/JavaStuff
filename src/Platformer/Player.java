@@ -148,7 +148,7 @@ public abstract class Player implements Entity {
         //Handles variable jump height. The longer the key is pressed, the higher player jumps.
         if (upStateTimer > 0 && vSpd <= 0) {
             vAcc = -jumpHeight / upStateTimer;
-            if (Math.abs(vAcc) < 2.5) //When vAcc is = 1.5, player is at peak of jump, so set vAcc to 0 so player is influenced only by gravity
+            if (Math.abs(vAcc) < 2.5) //When vAcc is = 2.5, player is at peak of jump, so set vAcc to 0 so player is influenced only by gravity
                 vAcc = 0;
             downState = false;
         } else {

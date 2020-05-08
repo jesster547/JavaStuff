@@ -6,6 +6,7 @@ public class Slime extends Enemy{
     private int jumpTimer, jumpPos, currentPos;
     private double hSpd, hAcc, vSpd;
     private boolean facingRight;
+    private HealthBars healthbar;
 
     public Slime(int x, int y, int w, int h){
         super(x, y, w, h);
@@ -13,6 +14,7 @@ public class Slime extends Enemy{
     }
 
     public void step(){
+
         facingRight = false;
         // Gets closest player's x position
         int playerX = 0;
@@ -24,14 +26,17 @@ public class Slime extends Enemy{
         }
         //Checks if Slime can jump and is on cooldown to jump. If so, it decreases the cooldown by one frame and
         // accelerates the slime toward the player. Also handles facingRight.
-        if(jumpTimer > 0 && canJump) {
+        if(jumpTimer > 0 && canJump) { ;
             jumpTimer--;
             int dir = 0;
-            if(playerX - x+(w/2) != 0){
-                dir = Math.abs(playerX - x+(w/2))/(playerX - x+(w/2));
+            if(playerX - (x+(w/2)) != 0){
+                dir = Math.abs(playerX - (x+(w/2)))/(playerX - (x+(w/2)));
             }
+            else
+                hSpd = 0;
             hAcc = dir*.1;
-            if(dir >= 0)
+
+            if(dir > 0)
                 facingRight=true;
         }
 
@@ -53,7 +58,7 @@ public class Slime extends Enemy{
                 dir = Math.abs(jumpPos - x) / (jumpPos - x);
             }
             hSpd = dir*((double)Math.abs(jumpPos-currentPos))/52;
-            if(dir >= 0)
+            if(dir > 0)
                 facingRight=true;
         }
 
@@ -73,11 +78,6 @@ public class Slime extends Enemy{
                 //Checks if Platform is directly below. If so, Slime can jump. Stays true once it becomes true
                 if (!canJump) {
                     canJump = i.getBounds().intersects(new Rectangle(x, y + 1, w, h));
-                }
-                if (canJump && upState) {
-                    vSpd = jumpHeight * -1; //Sends player upward (Jump)
-                    upState = false;
-
                 }
                 /* Checks if slime will collide with a platform in the next step. If so, it
                  * will move the slime as close to the platform as possible without intersecting it.
@@ -108,9 +108,10 @@ public class Slime extends Enemy{
         }
 
         //Adds velocity to position
-        this.x +=this.hSpd;
-        this.y+= this.vSpd;
+        this.x += this.hSpd;
+        this.y += this.vSpd;
 
+        healthbar.step();
     }
     public void remove() {
 
@@ -123,7 +124,7 @@ public class Slime extends Enemy{
     }
 
     public void spawn() {
-
+        healthbar = new HealthBars(this);
     }
 
     public boolean facingRight() {
@@ -131,12 +132,8 @@ public class Slime extends Enemy{
     }
 
     public void paint(Graphics2D g){
-        g.setColor(new Color(0, 0, 0));
-        g.fillRect((x+(w/2))-room.getCamX(), 0, 1, 800);
-        g.setColor(new Color(255, 182, 0, 100));
-        if(jumpTimer == 0){
-            g.setColor(new Color(255, 182, 0));
-        }
-        g.fillRect(x-room.getCamX(), y, w, h);
+        g.setColor(new Color(255, 182, 0, 255-jumpTimer));
+        g.fillRect(x-room.getCamX()-10, y-10, w+20, h+20);
+        healthbar.paint(g);
     }
 }
