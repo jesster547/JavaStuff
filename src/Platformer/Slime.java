@@ -13,7 +13,7 @@ public class Slime extends Enemy{
 
     public Slime(int x, int y, int w, int h){
         super(x, y, w, h);
-        jumpTimer = 0;
+        jumpTimer = (int)(Math.random()*255);
     }
 
     public void step(){
