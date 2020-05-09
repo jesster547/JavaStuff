@@ -3,17 +3,21 @@ package Platformer;
 import java.awt.*;
 
 public class Hurtbox implements Entity{
-    protected int x, y, w, h, damage, hKnockback, vKnockback;
+    protected int x, y, w, h, damage, hKnockback, vKnockback, xOffset, yOffset;
     protected Room room;
     public Entity parent;
-    public Hurtbox(int x, int y, int w, int h, int damage, int hKnockback, int vKnockback, Entity parent){
+    private final Boolean temp;
+    public Hurtbox(int x, int y, int w, int h, int damage, int hKnockback, int vKnockback, boolean temp, Entity parent){
         this.x = x;
         this.y= y;
         this.w = w;
         this.h = h;
+        this.xOffset = x-parent.getX();
+        this.yOffset = y-parent.getY();
         this.damage = damage;
         this.hKnockback = hKnockback;
         this.vKnockback = vKnockback;
+        this.temp = temp;
         this.parent = parent;
         if(parent instanceof Enemy)
             this.room = ((Enemy)parent).room;
@@ -22,8 +26,8 @@ public class Hurtbox implements Entity{
     }
 
     public void step() {
-        this.x = parent.getX()-5;
-        this.y = parent.getY()-5;
+        this.x = parent.getX()+xOffset;
+        this.y = parent.getY()+yOffset;
     }
 
     public boolean facingRight() {
@@ -31,7 +35,7 @@ public class Hurtbox implements Entity{
     }
 
     public void paint(Graphics2D g) {
-        g.setColor(new Color(94, 58, 177, 100));
+        g.setColor(new Color(90, 33, 227, 100));
         g.fillRect(x - room.getCamX(), y, w, h);
     }
 
@@ -61,5 +65,9 @@ public class Hurtbox implements Entity{
 
     public int getY() {
         return 0;
+    }
+
+    public boolean isTemp(){
+        return temp;
     }
 }

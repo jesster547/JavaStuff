@@ -1,7 +1,6 @@
 package Platformer;
 
 
-import sun.awt.windows.WPrinterJob;
 
 import java.awt.*;
 
@@ -37,17 +36,20 @@ public class Bot extends Enemy {
                 playerX = (int)(player.getX()+(player.getBounds().getWidth()/2));
             }
         }
-        if(playerX-(x+((double)w/2))>=0){
+        if(playerX-(x+((double)w/2))>0){
             this.hSpd+= hAcc;
             if (this.hSpd > walkSpeed){
                 this.hSpd = walkSpeed;
             }
         }
-        else{
+        else if(playerX-(x+((double)w/2))<0){
             this.hSpd -= hAcc;
             if (this.hSpd < walkSpeed){
                 this.hSpd = walkSpeed*-1;
             }
+        }
+        else{
+            this.hSpd = 0;
         }
         this.vSpd  += grv;
         // Basically checks boundaries.
@@ -117,7 +119,7 @@ public class Bot extends Enemy {
     }
 
     void spawn() {
-        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, 30, 15, this));
+        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, 30, 15, false, this));
         this.HB = new HealthBars(this);
     }
 
