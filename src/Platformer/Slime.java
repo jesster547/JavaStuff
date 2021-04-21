@@ -154,4 +154,7 @@ public class Slime extends Enemy{
         g.fillRect(x-room.getCamX()-10, y-10, w+20, h+20);
         healthbar.paint(g);
     }
+    public String[] getImgSources() {
+        return new String[]{"src/Platformer/Images/Slime/Slime_neutral.png"};
+    }
 }

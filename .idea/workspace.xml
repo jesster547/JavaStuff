@@ -20,9 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92acb7fe-7559-4c30-8e06-a3858bf37b7d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_3_2020_3_14_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_3_2020_5_04_AM_[Default_Changelist]1/backGround_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_3_2020_5_04_AM_[Default_Changelist]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_3_2020_9_29_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_2020_10_09_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_2020_10_56_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_2020_12_09_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_2020_12_39_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2020_2_04_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2020_2_23_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2020_7_30_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_6_2020_1_12_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Platformer/HealthBars.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/HealthBars.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Platformer/Images/Slime/Slime_neutral.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/Images/Slime/Slime_neutral.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Platformer/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Platformer/Slime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platformer/Slime.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,41 +179,29 @@
     <option name="LAST_COMMIT_MESSAGE" value="put enemy step into bot" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588489577779">
+    <state width="1877" height="60" key="GridCell.Tab.0.bottom" timestamp="1618988282286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588489577779" />
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1588562422083">
+    <state width="1877" height="60" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618988282286" />
+    <state width="1877" height="60" key="GridCell.Tab.0.center" timestamp="1618988282286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1588562422083" />
-    <state width="1877" height="2" key="GridCell.Tab.0.bottom" timestamp="1588746683143">
+    <state width="1877" height="60" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618988282286" />
+    <state width="1877" height="60" key="GridCell.Tab.0.left" timestamp="1618988282286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588746683143" />
-    <state width="1877" height="2" key="GridCell.Tab.0.center" timestamp="1588746683143">
+    <state width="1877" height="60" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618988282286" />
+    <state width="1877" height="60" key="GridCell.Tab.0.right" timestamp="1618988282286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588746683143" />
-    <state width="1877" height="2" key="GridCell.Tab.0.left" timestamp="1588746683143">
+    <state width="1877" height="60" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618988282286" />
+    <state x="0" y="144" key="new project wizard" timestamp="1613968259173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588746683143" />
-    <state width="1877" height="2" key="GridCell.Tab.0.right" timestamp="1588746683143">
+    <state x="0" y="144" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1613968259173" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618987428111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588746683143" />
-    <state x="161" y="77" width="1740" height="868" key="MergeDialog" timestamp="1588651185428">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="161" y="77" width="1740" height="868" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588651185428" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588572126378">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588572126378" />
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588650968279">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588650968279" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618987428111" />
   </component>
 </project>

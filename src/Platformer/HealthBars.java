@@ -7,6 +7,7 @@ public class HealthBars implements Entity {
     private int y;          // y loc of health bar.
     private int width;      // width of health bar.
     private int height;     // height of health bar.
+    private double hp;      // pixels per health point
     private double curHealth;  // actual health (in pixels)
     private float color;
     private int red;

@@ -22,7 +22,7 @@ public abstract class Player implements Entity {
      * upStateLock - Locks upState's value when player is in air Players cannot jump twice while in air*/
     protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana, iFrames, upStateTimer;
     protected double vAcc, vSpd, hSpd, jumpHeight, hAcc;
-    protected boolean upState = false, rightState = false, leftState = false, downState = false, facingRight = true,
+    protected boolean upState = false, rightState = false, leftState = false, downState = false, attackState = false, facingRight = true,
             canJump = false, hitStun = false, upStateLock = false;
     public Room room;
     protected int[] imgIndex;
@@ -165,7 +165,7 @@ public abstract class Player implements Entity {
             hSpd -= hAcc;
 
         //Changes vSpd for gravity
-        vSpd += grv;
+        //vSpd += grv;
 
         for (Hurtbox i : room.hurtboxList) {
             if (i.parent instanceof Enemy) {
@@ -195,6 +195,7 @@ public abstract class Player implements Entity {
                 if (canJump && upState && vSpd > 1) {
                     vSpd = jumpHeight * -1; //Sends player upward (Jump)
                     downState = false;
+                    canJump = false;
                 }
                 /* Checks if player will collide with a platform in the next step. If so, it
                  * will move the player as close to the platform as possible without intersecting it.
@@ -318,6 +319,10 @@ public abstract class Player implements Entity {
         if (k.getKeyCode() == KeyEvent.VK_DOWN) {
             downState = true;
         }
+        if (k.getKeyCode() == KeyEvent.VK_SPACE) {
+            attackState = true;
+        }
+
     }
 
     //Checks if keys get released
@@ -333,6 +338,9 @@ public abstract class Player implements Entity {
         }
         if (k.getKeyCode() == KeyEvent.VK_DOWN) {
             downState = false;
+        }
+        if (k.getKeyCode() == KeyEvent.VK_SPACE) {
+            attackState = false;
         }
     }
 
