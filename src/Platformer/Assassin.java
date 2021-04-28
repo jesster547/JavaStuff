@@ -123,6 +123,17 @@ public class Assassin extends Player {
 
     }
 
+    public void doAttack(){
+        if(this.facingRight) {
+            room.hurtboxList.add(new Hurtbox(x + w, y, 70, 155, 5, 7, 4, 21, true, this));
+            room.hurtboxList.add(new Hurtbox(x + w, y + 10, 110, 75, 5, 5, 2, 19, true, this));
+        }
+        else{
+            room.hurtboxList.add(new Hurtbox(x -70, y, 70, 155, 5, 7, 4, 21, true, this));
+            room.hurtboxList.add(new Hurtbox(x -110, y + 10, 110, 75, 5, 5, 2, 19, true, this));
+        }
+    }
+
     public void setStats(int totHealth, int totMana, int theWalkSpeed, int theJumpHeight) {
         this.maxHealth = totHealth;
         this.maxMana = totMana;

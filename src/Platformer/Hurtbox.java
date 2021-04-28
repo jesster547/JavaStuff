@@ -3,11 +3,11 @@ package Platformer;
 import java.awt.*;
 
 public class Hurtbox implements Entity{
-    protected int x, y, w, h, damage, hKnockback, vKnockback, xOffset, yOffset;
+    protected int x, y, w, h, damage, hKnockback, vKnockback, xOffset, yOffset,timeLeft;
     protected Room room;
     public Entity parent;
     private final Boolean temp;
-    public Hurtbox(int x, int y, int w, int h, int damage, int hKnockback, int vKnockback, boolean temp, Entity parent){
+    public Hurtbox(int x, int y, int w, int h, int damage, int hKnockback, int vKnockback,int lifeTime, boolean temp, Entity parent){
         this.x = x;
         this.y= y;
         this.w = w;
@@ -19,6 +19,7 @@ public class Hurtbox implements Entity{
         this.vKnockback = vKnockback;
         this.temp = temp;
         this.parent = parent;
+        this.timeLeft = lifeTime;
         if(parent instanceof Enemy)
             this.room = ((Enemy)parent).room;
         if(parent instanceof Player)
@@ -28,6 +29,8 @@ public class Hurtbox implements Entity{
     public void step() {
         this.x = parent.getX()+xOffset;
         this.y = parent.getY()+yOffset;
+        if(this.temp)
+            this.timeLeft--;
     }
 
     public boolean facingRight() {
@@ -63,9 +66,9 @@ public class Hurtbox implements Entity{
         return 0;
     }
 
-    public int getY() {
-        return 0;
-    }
+    public int getY() { return 0; }
+
+    public int getTimeLeft(){ return this.timeLeft; }
 
     public boolean isTemp(){
         return temp;

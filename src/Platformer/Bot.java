@@ -119,7 +119,7 @@ public class Bot extends Enemy {
     }
 
     void spawn() {
-        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, 30, 15, false, this));
+        room.hurtboxList.add(new Hurtbox(x, y, w + 10, h + 10, 10, 30, 15, 1,false, this));
         this.HB = new HealthBars(this);
     }
 

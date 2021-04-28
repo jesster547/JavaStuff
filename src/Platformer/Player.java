@@ -23,7 +23,7 @@ public abstract class Player implements Entity {
     protected int x, y, w, h, walkSpeed, weapIndex, healthPoints, manaPoints, maxHealth, maxMana, iFrames, upStateTimer;
     protected double vAcc, vSpd, hSpd, jumpHeight, hAcc;
     protected boolean upState = false, rightState = false, leftState = false, downState = false, attackState = false, facingRight = true,
-            canJump = false, hitStun = false, upStateLock = false;
+            canJump = false, hitStun = false, upStateLock = false, canAttack = true;
     public Room room;
     protected int[] imgIndex;
 
@@ -52,6 +52,8 @@ public abstract class Player implements Entity {
     abstract void remove();
 
     abstract void spawn();
+
+    abstract   void doAttack();
 
     public int getWeapIndex() {
         return weapIndex;
@@ -107,6 +109,10 @@ public abstract class Player implements Entity {
             rightInt = 1;
         if (leftState)
             leftInt = 1;
+        if(attackState && canAttack) {
+            canAttack = false;
+            doAttack();
+        }
         int move = rightInt - leftInt; //-1 = left, 0 = still, 1 = right
 
         if (move == -1) {
@@ -260,6 +266,15 @@ public abstract class Player implements Entity {
                 }
             }
 
+        }
+        //removes any hitboxes used by this player
+        for(int i = 0; i < room.hurtboxList.size(); i++){
+            if(room.hurtboxList.get(i).parent == this && room.hurtboxList.get(i).isTemp() && room.hurtboxList.get(i).getTimeLeft() <=0){
+                room.hurtboxList.remove(i);
+                i--;
+                System.out.println("hitbox removed");
+                canAttack = true;
+            }
         }
 
         // Makes Player crouch when crouched

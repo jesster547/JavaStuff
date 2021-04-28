@@ -17,7 +17,6 @@ public class Slime extends Enemy{
     }
 
     public void step(){
-
         facingRight = false;
         // Gets closest player's x position
         int playerX = 0;
@@ -29,8 +28,8 @@ public class Slime extends Enemy{
         }
         //Adds temporary landing hitboxes onto slime
         if(jumpTimer == 179) {
-            room.hurtboxList.add(new Hurtbox(x-50, y+h-50, 50, 50, 5, 7, 2, true,this));
-            room.hurtboxList.add(new Hurtbox(x+w, y+h-50, 50, 50, 5, 7, 2, true, this));
+            room.hurtboxList.add(new Hurtbox(x-50, y+h-50, 50, 50, 5, 7, 2,19, true,this));
+            room.hurtboxList.add(new Hurtbox(x+w, y+h-50, 50, 50, 5, 7, 2,19,true, this));
         }
         //Removes temporary landing hitbixes
         if(jumpTimer == 160){
@@ -142,7 +141,7 @@ public class Slime extends Enemy{
 
     public void spawn() {
         healthbar = new HealthBars(this);
-        room.hurtboxList.add(new Hurtbox(x, y, w, h, 7, 10, 5, false, this));
+        room.hurtboxList.add(new Hurtbox(x, y, w, h, 7, 10, 5,1,false, this));
     }
 
     public boolean facingRight() {
