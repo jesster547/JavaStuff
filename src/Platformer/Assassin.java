@@ -9,7 +9,7 @@ public class Assassin extends Player {
     private int healthPoints;
     private int manaPoints;
     private final int weaponIndex;
-    private int mvTimer;
+    private int mvTimer,jmpTimer;
     private HealthBars HB;
 
     public Assassin(int x, int y, int w, int h, int i) {
@@ -44,11 +44,11 @@ public class Assassin extends Player {
 
     public String[] getImgSources() {
         //List of all assassin image sources. Index in this list correlates to imgIndex.
-        return new String[]{"src/Platformer/Images/Assassin/assassinNeutral.PNG",
-                "src/Platformer/Images/Assassin/assassinUp.PNG", "src/Platformer/Images/Assassin/assassinDown.png",
-                "src/Platformer/Images/Assassin/assassinRunning1.PNG", "src/Platformer/Images/Assassin/assassinRunning2.PNG",
-                "src/Platformer/Images/Assassin/assassinRunning3.PNG", "src/Platformer/Images/Assassin/assassinRunning4.PNG",
-                "src/Platformer/Images/Assassin/assassinRunning5.PNG", "src/Platformer/Images/Assassin/assassinRunning6.PNG",
+        return new String[]{"src/Platformer/Images/Assassin/NeutralStick.PNG",
+                "src/Platformer/Images/Assassin/JumpStick0.PNG","src/Platformer/Images/Assassin/JumpStick1.PNG","src/Platformer/Images/Assassin/JumpStick2.PNG","src/Platformer/Images/Assassin/JumpStick3.PNG", "src/Platformer/Images/Assassin/assassinDown.png",
+                "src/Platformer/Images/Assassin/RunningAnimationStick0.PNG", "src/Platformer/Images/Assassin/RunningAnimationStick1.PNG",
+                "src/Platformer/Images/Assassin/RunningAnimationStick2.PNG", "src/Platformer/Images/Assassin/RunningAnimationStick3.PNG",
+                "src/Platformer/Images/Assassin/RunningAnimationStick4.PNG", "src/Platformer/Images/Assassin/RunningAnimationStick5.PNG",
                 "src/Platformer/Images/Assassin/assassinRunning7.PNG", "src/Platformer/Images/Assassin/assassinRunning8.PNG",
                 "src/Platformer/Images/Assassin/assassinSkid.PNG", "src/Platformer/Images/Assassin/assassinSkidBack.PNG",
                 "src/Platformer/Images/Assassin/assassinCrouch.PNG"};
@@ -66,10 +66,20 @@ public class Assassin extends Player {
         }
         //Checks if player is in the air
         if (vSpd >= 0 && !canJump) {
-            return (imgIndex[2]);
+            return (imgIndex[4]);
         }
         if (vSpd < 0) {
-            return (imgIndex[1]);
+            int jmpMod = jmpTimer % 20;
+            jmpTimer++;
+            if (jmpMod == 0)
+                return imgIndex[1];
+            if (jmpMod <= 5)
+                return imgIndex[2];
+            if (jmpMod == 10)
+                return imgIndex[3];
+            if (jmpMod <= 15)
+                return imgIndex[4];
+            return imgIndex[4];
         }
 
         //Checks if player is crouching and resets running animation
@@ -81,7 +91,7 @@ public class Assassin extends Player {
         if (Math.abs(hSpd) < 1 || mvTimer == 0) {
             return imgIndex[0];
         }
-        //Player is on ground moving. Animation of 8 frames running at 12 frames per second
+        //Player is on ground moving. Animation of 6 frames running at 12 frames per second- saved extra 2 spots for an 8 frame animation code will need adjusting a bit tho
         else {
             //Skidding Animation & Skidding backwards animation. Resets running animation
             if (!leftState && !rightState) {
@@ -91,24 +101,20 @@ public class Assassin extends Player {
                 return imgIndex[12];
             }
             //Iterates through the running animation
-            int mvMod = mvTimer % 40;
+            int mvMod = mvTimer % 25;
             if (mvMod == 0)
-                return imgIndex[10];
+                return imgIndex[11]; // Last index for running
             if (mvMod <= 5)
-                return imgIndex[3];
+                return imgIndex[6]; // First index for running
             if (mvMod <= 10)
-                return imgIndex[4];
-            if (mvMod <= 15)
-                return imgIndex[5];
-            if (mvMod <= 20)
-                return imgIndex[6];
-            if (mvMod <= 25)
                 return imgIndex[7];
-            if (mvMod <= 30)
+            if (mvMod <= 15)
                 return imgIndex[8];
-            if (mvMod <= 35)
+            if (mvMod <= 20)
                 return imgIndex[9];
-            return imgIndex[10];
+            if (mvMod <= 25)
+                return imgIndex[10];
+            return imgIndex[11];     //Last index for running
         }
     }
 
